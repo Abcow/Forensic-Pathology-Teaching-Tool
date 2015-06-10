@@ -1,0 +1,5 @@
+Add content area div to page
+Create javascript classes for each object
+Decide format for defining pages
+Create Javascript function for creating pages
+Decide aesthetic for each element
