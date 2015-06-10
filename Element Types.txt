@@ -3,6 +3,9 @@ All Pages:
 	Navigation
 	Scrollable content area
 
+Title:
+	Just a title
+
 Sub Heading:
 	Text in a block
 
