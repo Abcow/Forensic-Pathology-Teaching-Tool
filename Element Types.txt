@@ -1,0 +1,30 @@
+All Pages:
+	Title
+	Navigation
+
+Sub Heading:
+	Text in a block
+
+Paragraph:
+	Text in a block
+
+Image:
+	Just an image
+
+Gallery: (For different views)
+	Multiple images together
+
+Sound Clip:
+	Plays a sound when clicked
+
+Dot List: (For different diseases)
+	Holds other elements, navigated by arrows
+
+Quiz Element:
+	Question
+	n Answers
+	Which answer is correct
+	Message for correct answer
+	Find out more popup
+
+Interactive Forensics:
