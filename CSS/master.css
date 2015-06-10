@@ -1,0 +1,21 @@
+#navigation{
+	position:fixed;
+	color:#FFF;
+	bottom: 0%;
+
+	width:10%;
+	
+	background-color:#111;
+	font-size:15pt;
+	
+}
+
+#navigation ul{
+
+	list-style-type: none;
+}
+
+#navigation li{
+
+	display: inline-block;
+}
