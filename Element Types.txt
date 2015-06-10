@@ -1,6 +1,7 @@
 All Pages:
 	Title
 	Navigation
+	Scrollable content area
 
 Sub Heading:
 	Text in a block
