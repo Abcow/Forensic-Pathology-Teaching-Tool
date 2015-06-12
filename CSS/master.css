@@ -26,11 +26,13 @@ nav ul {
 
 nav li {
     float: right;
+    padding-left: 10px;
 }
 
 nav img {
 	width: 64px;
 	height: 64px;
+    min-width: 50%;
 }
 
 main {

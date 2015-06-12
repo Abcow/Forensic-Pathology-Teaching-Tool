@@ -1,15 +1,30 @@
-function initialiseFeatures()
-{
-    var title = document.getElementById("navMenuTitle")
-    title.onclick = function() {openList();};
+var pageNumber = 0;
+var maxPageNumber = 20;
+
+function back() {
+	if (pageNumber > 1) {
+		pageNumber--;
+		alert("Going Back!");
+	};
 }
 
-function openList() {
-    var list = document.getElementById("buttons");
+function forward(){
+	if(pageNumber < maxPageNumber){
+		pageNumber++:
+		alert("Going Forward!");
+	}
+}
 
-    if (list.style.display == "none"){
-        list.style.display = "block";
-    }else{
-        list.style.display = "none";
-    }
+
+window.onload = function(){
+
+	alert("it's happening!");
+
+		document.getElementByID("left").onclick = function(){
+    		back();
+   	 	}
+
+    	document.getElementByID("right").onclick = function(){
+    		forward();
+    	}
 }
