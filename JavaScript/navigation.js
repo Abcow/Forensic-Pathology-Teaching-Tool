@@ -10,21 +10,29 @@ function back() {
 
 function forward(){
 	if(pageNumber < maxPageNumber){
-		pageNumber++:
+		pageNumber ++:
 		alert("Going Forward!");
 	}
 }
 
-
-window.onload = function(){
-
-	alert("it's happening!");
-
-		document.getElementByID("left").onclick = function(){
-    		back();
-   	 	}
-
-    	document.getElementByID("right").onclick = function(){
-    		forward();
-    	}
+function paragraph(parent, content) {
+    this.paragraph = document.createElement("p");
+    this.paragraph.innerHTML = content;
+    this.paragraph.class = "element"
+    parent.appendChild(this.paragraph);
 }
+
+window.onload = function() {
+    alert("Hello");
+
+    var test = new paragraph(document.getElementsByTagName("main"), "test");
+
+
+    document.getElementByID("left").onclick = function(){
+        back();
+    }
+
+    document.getElementByID("right").onclick = function(){
+        forward();
+    }    
+};
