@@ -18,7 +18,7 @@ function forward(){
 window.onload = function() {
     alert("Hello");
 
-    var test = new paragraph(document.getElementsByTagName("main"), "test");
+    var test = new paragraph(document.getElementsByTagName("main")[0], "test");
 
 
     document.getElementByID("left").onclick = function(){
