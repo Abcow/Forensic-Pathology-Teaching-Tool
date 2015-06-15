@@ -44,9 +44,17 @@ function Paragraph(text) {
     this.container.appendChild(this.paragraph);
 }
 
+function requestData(url){
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("POST", url, true);
+    xmlhttp.send(null);
+
+}
+
 window.onload = function() {
     var layoutManager = new LayoutManager(document.getElementsByTagName("main")[0]);
     layoutManager.addElement(new Title("Hello"));
     layoutManager.addElement(new Subtitle("Hello"));
     layoutManager.addElement(new Paragraph("Hello"));
+    requestData("sourcetext/page1.txt");
 };
