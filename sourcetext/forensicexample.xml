@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<body id = "forensic" pgn= "1"><!--What the page is, a text page, quiz or forensicy page, pgn is the page number, order to be read-->
+    <img id="1" src= "images/example.png"><!--Image to be displayed, In forensic pages this will be required. The clickable objects will be on top of the main image-->
+
+    <h1>Heading</h1> <!-- Title for the page -->
+
+    <!--The text to be displayed upon clicking on an 'object'-->
+    <!-- co-ords of the bounding box to click to display this paragraph on the display section (x,y) -> (lx, ly) *lower x, lower y-->    
+    <p x= "" y= "" lx= "" ly= "">
+        This is a whatever, it's cool because this is a thing... I dunno.
+    </p>
+
+    <!-- As many of these as you like, don't make them overlap! :D -->
+    <p x= "" y= "" lx= "" ly= "">
+        This is a whatever, it's cool because this is a thing... I dunno.
+    </p>
+
+    <!--Other views on the page, toggle with the side bar-->
+    <img id= "2" src= "images/example1.png">
+    <img id= "3" src= "images/example1.png">
+
+</body>
