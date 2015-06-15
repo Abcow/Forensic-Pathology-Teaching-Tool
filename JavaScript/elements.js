@@ -56,5 +56,5 @@ window.onload = function() {
     layoutManager.addElement(new Title("Hello"));
     layoutManager.addElement(new Subtitle("Hello"));
     layoutManager.addElement(new Paragraph("Hello"));
-    requestData("sourcetext/page1.txt");
+    layoutManager.addElement(new Paragraph("Hello there alfoo"));
 };
