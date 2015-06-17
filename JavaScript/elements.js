@@ -37,11 +37,23 @@ function Subtitle(text) {
 }
 
 function Paragraph(text) {
-    this.paragraph = document.createElement("p");
-    this.paragraph.innerHTML = text;
+    this.p = document.createElement("p");
+    this.p.innerHTML = text;
 
     this.container = document.createElement("div");
-    this.container.appendChild(this.paragraph);
+    this.container.appendChild(this.p);
+}
+
+function Image(src, width, height) {
+    this.img = document.createElement("img");
+    this.img.src = src;
+    this.img.style.maxWidth = width;
+    this.img.style.maxHeight = height;
+    this.img.style.marginLeft = "auto";
+    this.img.style.marginRight = "auto";
+
+    this.container = document.createElement("div");
+    this.container.appendChild(this.img);
 }
 
 window.onload = function() {
@@ -49,4 +61,5 @@ window.onload = function() {
     layoutManager.addElement(new Title("Hello"));
     layoutManager.addElement(new Subtitle("Hello"));
     layoutManager.addElement(new Paragraph("Hello"));
+    layoutManager.addElement(new Image("images/button-left.png", "128", "128"));
 };
