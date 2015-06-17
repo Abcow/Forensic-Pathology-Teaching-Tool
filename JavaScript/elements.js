@@ -61,5 +61,5 @@ window.onload = function() {
     layoutManager.addElement(new Title("Hello"));
     layoutManager.addElement(new Subtitle("Hello"));
     layoutManager.addElement(new Paragraph("Hello"));
-    layoutManager.addElement(new Image("images/button-left.png", "128", "128"));
+    layoutManager.addElement(new Image("images/button-left.png", 128, 128));
 };
