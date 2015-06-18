@@ -1,5 +1,5 @@
 Add content area div to page
 Create javascript classes for each object
-Decide format for defining pages
+Decide format for defining pages		- Done, needs reviewing
 Create Javascript function for creating pages
 Decide aesthetic for each element
