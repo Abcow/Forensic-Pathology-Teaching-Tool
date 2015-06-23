@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.w3schools.com" xmlns="http://www.w3schools.com" elementFormDefault="qualified">
+    
+    <xs:element name="page">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded">
+
+                <xs:element name="title" type="xs:string" />
+
+                <xs:element name="subtitle" type="xs:string" />
+
+                <xs:element name="text" type="xs:string" />
+
+                <xs:element ref="image" />
+
+                <xs:element name="gallery">
+                    <xs:complexType>
+                        
+                        <xs:sequence maxOccurs="unbounded">
+                            <xs:element ref="image" minOccurs="1" />
+                        </xs:sequence>
+
+                        <xs:attribute name="width" default="256">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:integer">
+                                    <xs:minInclusive value="1" />
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:attribute>
+
+                        <xs:attribute name="height" default="256">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:integer">
+                                    <xs:minInclusive value="1" />
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:attribute>
+
+                    </xs:complexType>
+                </xs:element>
+
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="image">
+        <xs:complexType>
+
+            <xs:attribute name="filename" type="xs:string" use="required" />
+
+            <xs:attribute name="width" default="256">
+                <xs:simpleType>
+                    <xs:restriction base="xs:integer">
+                        <xs:minInclusive value="1" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+
+            <xs:attribute name="height" default="256">
+                <xs:simpleType>
+                    <xs:restriction base="xs:integer">
+                        <xs:minInclusive value="1" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>
