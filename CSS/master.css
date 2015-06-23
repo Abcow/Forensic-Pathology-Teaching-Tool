@@ -6,6 +6,51 @@ body {
     margin: 0px;
 }
 
+body img{
+    
+    width: 25%;
+    height: 25%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#quiz{
+    font-size: 20px;
+    list-style-type: none;
+}
+
+#correct{
+    opacity: 0;
+}
+
+#wrong{
+    opacity: 0;
+}
+
+#quiz li{
+
+    cursor: pointer;
+
+    padding-top: 15px;
+    padding-bottom: 15px;
+    max-width: 50%;
+    margin-right: auto;
+}
+
+#quiz li:hover{
+
+    border-style: solid;
+    border-width: 2px;
+    border-color: black;
+
+    padding-top: 13px;
+    padding-bottom: 13px;
+
+    color: black;
+    background-color: white;
+}
+
 nav {
     position: fixed;
     color: #FFF;
@@ -50,8 +95,8 @@ nav li {
 }
 
 nav img {
-	width: 64px;
-	height: 64px;
+    width: 64px;
+    height: 64px;
     min-width: 50%;
     width: 64px;
     height: 64px;

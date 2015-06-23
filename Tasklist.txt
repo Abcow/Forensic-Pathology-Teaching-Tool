@@ -1,5 +1,11 @@
 Add content area div to page
 Create javascript classes for each object
-Decide format for defining pages
+Decide format for defining pages		- Done, needs reviewing
 Create Javascript function for creating pages
 Decide aesthetic for each element
+
+Opening in Chrome Ajax commands
+
+chrome --allow-file-access-from-files (on Linux)
+open -a 'Google Chrome' --args --allow-file-access-from-files (on Mac OS X)
+"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --allow-file-access-from-files (on Windows)
