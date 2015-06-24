@@ -35,13 +35,12 @@ function showmoreinfo(srctext){
    	document.getElementsByTagName("main")[0].appendChild(para);
 }
 
-function createButton(text, context, func){
-    var button = document.createElement("input");
-    button.type = "button";
-    button.id = "delme";
-    button.value = text;
-    button.onclick = func;
-    context.appendChild(button);
+function createClickImage(src, context, id, func){
+	var img = document.createElement("img");
+	img.src = src;
+	img.id = id;
+	img.onclick = func;
+	context.appendChild(img);
 }
 
 function removeFal(){
@@ -54,8 +53,8 @@ function removeFal(){
    	
    	showmoreinfo(wrongtext);
 
-   	createButton("More Information", document.getElementsByTagName("main")[0], function(){ showmoreinfo(moretext); deletebutton(); });
-
+   	createClickImage("images/more.png", document.getElementsByTagName("main")[0], "mor" ,function(){ showmoreinfo(moretext); deletebutton(); });
+   	createClickImage("images/refresh.png",  document.getElementsByTagName("main")[0], "refresh", function(){ alert("Currenly unimplemented"); } )
 }
 
 function removeTru(){
@@ -74,7 +73,7 @@ function removeTru(){
 }
 
 function deletebutton(){
-	var butt = document.getElementById("delme");
+	var butt = document.getElementById("mor");
 	butt.parentNode.removeChild(butt);
 }
 
