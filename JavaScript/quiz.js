@@ -16,7 +16,14 @@ window.onload = function() {
 
 
    for(i = 0; i < answers.length; i++){
-   		answers[i].onclick = function(){ remove() }
+   	
+   	var y = answers[i].getAttribute("cor");	
+   		if(y == "false"){
+   			answers[i].onclick = function(){ removeFal() }
+   		}
+   		if(y == "true"){
+   			answers[i].onclick = function(){ removeTru() }
+   		}
    }
 
 }
@@ -33,7 +40,20 @@ function createButton(text, context, func){
     context.appendChild(button);
 }
 
-function remove(){
+function removeFal(){
+
+	var l = answers.length;
+
+	for(i = 0; i < l; i++){
+   		answers[0].parentNode.removeChild(answers[0]);
+   	}
+
+   	document.getElementById("blank").innerHTML = wrongtext;
+   	createButton("More Information", document.getElementsByTagName("main")[0], function(){ showmoreinfo() });
+
+}
+
+function removeTru(){
 
 	var l = answers.length;
 
