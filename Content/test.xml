@@ -16,7 +16,7 @@
 	<tabs>
 		<tab name="Common Cold">
 			<subtitle>Common Cold</subtitle>
-			<gallery width="700" height="600">
+			<gallery height="600">
 				<image filename="0.jpg" />
 				<image filename="2.jpg" />
 				<image filename="1.jpg" />
@@ -25,7 +25,7 @@
 		</tab>
 		<tab name="Malaria">
 			<subtitle>Malaria</subtitle>
-			<gallery width="700" height="600">
+			<gallery width="700">
 				<image filename="0.jpg" />
 				<image filename="2.jpg" />
 				<image filename="1.jpg" />

@@ -11,8 +11,8 @@ function parseElement(xmlObject) {
             break;
         case "image":
             return new Image("images/" + xmlObject.attributes.getNamedItem("filename").nodeValue,
-                             xmlObject.hasAttribute("width") ? xmlObject.attributes.getNamedItem("width").nodeValue : 256,
-                             xmlObject.hasAttribute("height") ? xmlObject.attributes.getNamedItem("height").nodeValue : 256);
+                             xmlObject.hasAttribute("width") ? xmlObject.attributes.getNamedItem("width").nodeValue + "px" : "100%",
+                             xmlObject.hasAttribute("height") ? xmlObject.attributes.getNamedItem("height").nodeValue + "px" : "auto");
             break;
         case "gallery":
             var srcList = [];
@@ -22,8 +22,8 @@ function parseElement(xmlObject) {
                 }
             }
             return new Gallery(srcList,
-                               xmlObject.hasAttribute("width") ? xmlObject.attributes.getNamedItem("width").nodeValue : 256,
-                               xmlObject.hasAttribute("height") ? xmlObject.attributes.getNamedItem("height").nodeValue : 256);
+                               xmlObject.hasAttribute("width") ? xmlObject.attributes.getNamedItem("width").nodeValue + "px" : "100%",
+                               xmlObject.hasAttribute("height") ? xmlObject.attributes.getNamedItem("height").nodeValue + "px" : "auto");
             break;
         case "tabs":
             var tabs = new Tabs();
@@ -108,12 +108,12 @@ function Text(text) {
 function Image(src, width, height) {
     this.img = document.createElement("img");
     this.img.src = src;
-    this.img.style.maxWidth = width + "px";
-    this.img.style.maxHeight = height + "px";
+    this.img.style.maxWidth = width;
+    this.img.style.maxHeight = height;
 
     this.container = document.createElement("div");
     this.container.className = "elementImage";
-    this.container.style.height = height + "px";
+    this.container.style.height = height;
     this.container.appendChild(this.img);
 }
 
@@ -122,12 +122,12 @@ function Gallery(srcList, width, height) {
     for (var i = 0; i < srcList.length; i += 1) {
         var img = document.createElement("img");
         img.src = srcList[i];
-        img.style.maxWidth = width + "px";
-        img.style.maxHeight = height + "px";
+        img.style.maxWidth = width;
+        img.style.maxHeight = height;
         img.style.left = "0px";
         if (i != 0) {
             img.style.opacity = 0;
-            img.style.left = width + "px";
+            img.style.left = width;
         }
         this.imgList.push(img);
     }
@@ -194,8 +194,8 @@ function Gallery(srcList, width, height) {
     };
 
     this.imageContainer = document.createElement("div");
-    this.imageContainer.style.width = width + "px";
-    this.imageContainer.style.height = height + "px";
+    this.imageContainer.style.width = width;
+    this.imageContainer.style.height = height;
 
     this.navContainer = document.createElement("div");
 

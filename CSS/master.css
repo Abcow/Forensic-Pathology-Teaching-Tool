@@ -234,7 +234,7 @@ body > div {
 }
 
 .elementTabs > div:first-child {
-    margin-right: 130px;
+    margin: 0px 130px;
     background-color: rgba(0, 0, 0, 0.2);
     height: 100%;
     padding: 16px 0px;
@@ -249,11 +249,10 @@ body > div {
 }
 
 .elementTabs > div:last-child > div {
-    width: 100%;
-    height: 48px;
+    width: 106px;
+    padding: 12px;
     margin-bottom: 2px;
     text-align: center;
-    line-height: 48px;
     background-color: rgba(0, 0, 0, 0.3);
     cursor:pointer;
 
