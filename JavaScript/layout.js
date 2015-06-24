@@ -57,6 +57,7 @@ function Title(text) {
     this.h1.innerHTML = text;
 
     this.container = document.createElement("div");
+    this.container.className = "elementTitle";
     this.container.appendChild(this.h1);
 }
 
@@ -65,6 +66,7 @@ function Subtitle(text) {
     this.h2.innerHTML = text;
 
     this.container = document.createElement("div");
+    this.container.className = "elementSubtitle";
     this.container.appendChild(this.h2);
 }
 
@@ -73,6 +75,7 @@ function Text(text) {
     this.p.innerHTML = text;
 
     this.container = document.createElement("div");
+    this.container.className = "elementText";
     this.container.appendChild(this.p);
 }
 
