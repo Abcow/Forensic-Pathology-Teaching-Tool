@@ -1,31 +1,10 @@
-var pageNumber = 0;
-var maxPageNumber = 20;
-
-function back() {
-    if (pageNumber > 1) {
-        pageNumber--;
-        alert("Going Back!");
-    }
-}
-
-function forward(){
-    if(pageNumber < maxPageNumber){
-        pageNumber++:
-        alert("Going Forward!");
-    }
-}
-
 window.onload = function() {
-    alert("Hello");
 
-    var test = new paragraph(document.getElementsByTagName("main")[0], "test");
+    alert("loaded");
 
+    var layoutManager = new LayoutManager(document.getElementsByTagName("main")[0]);
 
-    document.getElementByID("left").onclick = function(){
-        back();
-    };
-
-    document.getElementByID("right").onclick = function(){
-        forward();
+    document.getElementByID("home").onclick = function(){
+        loadPage("home", layoutManager);    
     };
 };

@@ -43,6 +43,18 @@ body {
     background-color: white;
 }
 
+#refresh {
+    width: 64px;
+    height: 64px;
+    float: right;
+}
+
+#mor{
+    width: 64px;
+    height: 64px;
+    float: left;
+}
+
 nav {
     position: fixed;
     color: #FFF;
