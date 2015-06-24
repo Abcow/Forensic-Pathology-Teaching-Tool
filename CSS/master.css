@@ -1,5 +1,6 @@
 html {
     background-color: #333;
+    font-family: 'Source Sans Pro';
 }
 
 body {
@@ -101,7 +102,7 @@ main {
     left: 0px;
     right: 0px;
     max-width: 1000px;
-    padding: 64px 16px;
+    padding: 64px 16px 256px 16px;
     color: #fff;
 }
 
@@ -141,4 +142,31 @@ main > div {
     -moz-transition: opacity 75ms linear, left 150ms linear;
     -webkit-transition: opacity 75ms linear, left 150ms linear;
     -o-transition: opacity 75ms linear, left 150ms linear;
+}
+
+.elementGallery > div > div {
+    position: relative;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    margin: 6px;
+    vertical-align: center;
+    background-color: rgba(0, 0, 0, 0.3);
+    font-weight: 600;
+
+    bottom: 0px;
+    opacity: 0.6;
+    transition: opacity 75ms linear, bottom 75ms linear;
+    -moz-transition: opacity 75ms linear, bottom 75ms linear;
+    -webkit-transition: opacity 75ms linear, bottom 75ms linear;
+    -o-transition: opacity 75ms linear, bottom 75ms linear;
+}
+
+.elementGallery > div > div:hover {
+    opacity: 1;
+    bottom: 1px;
+    transition: opacity 150ms linear, bottom 150ms linear;
+    -moz-transition: opacity 150ms linear, bottom 150ms linear;
+    -webkit-transition: opacity 150ms linear, bottom 150ms linear;
+    -o-transition: opacity 150ms linear, bottom 150ms linear;
 }

@@ -21,9 +21,6 @@ Gallery: (For different views)
 Sound Clip:
 	Plays a sound when clicked
 
-Dot List: (For different diseases)
-	Holds other elements, navigated by arrows
-
 Quiz Element:
 	Question
 	n Answers

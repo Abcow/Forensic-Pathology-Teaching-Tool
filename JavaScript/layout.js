@@ -100,6 +100,7 @@ function Gallery(srcList, width, height) {
         img.style.left = "0px";
         if (i != 0) {
             img.style.opacity = 0;
+            img.style.left = width + "px";
         }
         this.imgList.push(img);
     }
@@ -118,31 +119,27 @@ function Gallery(srcList, width, height) {
 
     this.changeImage = function(n) {
         if (n >= 0 && n < this.imgList.length && n != this.currentImage) {
-            var img = this.imgList[this.currentImage];
+            
             direction = (n > this.currentImage) ? 1 : -1;    
-            var newImg = this.imgList[this.currentImage + direction];
+            var newImg = this.imgList[n];
             
-            newImg.style.transition = "opacity 75ms linear";
-            newImg.style.WebkitTransition = "opacity 75ms linear";
-            newImg.style.MozTransition = "opacity 75ms linear";
-            newImg.style.MsTransition = "opacity 75ms linear";
-            newImg.style.OTransition = "opacity 75ms linear";
-            newImg.style.left = direction * width + "px";
-            
-            window.setTimeout(function() {
+            var i = n - direction;
+            while (i != this.currentImage) {
+                this.imgList[i].style.left = direction * -1 * width + "px";
+                i -= direction;
+            }
 
-                newImg.style.removeProperty("transition");
-                newImg.style.removeProperty("webkit-transition");
-                newImg.style.removeProperty("moz-transition");
-                newImg.style.removeProperty("ms-transition");
-                newImg.style.removeProperty("-o-transition");
+            this.imgList[this.currentImage].style.opacity = 0;
+            this.imgList[this.currentImage].style.removeProperty("color");
+            this.imgList[this.currentImage].style.removeProperty("backgroundColor");
+            this.navContainer.childNodes[this.currentImage].style.removeProperty("color")
+            this.navContainer.childNodes[this.currentImage].style.removeProperty("background-color")
+
     
-                img.style.left = direction * -1 * width + "px";
-                img.style.opacity = 0;
-    
-                newImg.style.left = "0px";
-                newImg.style.opacity = 1;
-            }, 0);
+            newImg.style.left = "0px";
+            newImg.style.opacity = 1;
+            this.navContainer.childNodes[n].style.color = "#333";
+            this.navContainer.childNodes[n].style.backgroundColor = "rgba(255, 255, 255, 0.9)";
 
             this.currentImage = n;
 
@@ -174,8 +171,20 @@ function Gallery(srcList, width, height) {
     this.imageContainer.style.width = width + "px";
     this.imageContainer.style.height = height + "px";
 
+    this.navContainer = document.createElement("div");
+
+    var createNavFunction = function(i) {return function() _this.changeImage(i)}
+
     for (var i = 0; i < this.imgList.length; i += 1) {
         this.imageContainer.appendChild(this.imgList[i]);
+        var button = document.createElement("div");
+        button.innerHTML = i;
+        if (i == 0) {
+            button.style.color = "#333";
+            button.style.backgroundColor = "rgba(255, 255, 255, 0.9)";
+        }
+        button.onclick = createNavFunction(i);
+        this.navContainer.appendChild(button);
     }
 
     this.container = document.createElement("div");
@@ -183,4 +192,6 @@ function Gallery(srcList, width, height) {
     this.container.appendChild(this.arrowPrev);
     this.container.appendChild(this.imageContainer);
     this.container.appendChild(this.arrowNext);
+    this.container.appendChild(document.createElement("br"));
+    this.container.appendChild(this.navContainer);
 }
