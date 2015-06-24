@@ -20,7 +20,7 @@
                             <xs:element ref="image" minOccurs="1" />
                         </xs:sequence>
 
-                        <xs:attribute name="width" default="256">
+                        <xs:attribute name="width">
                             <xs:simpleType>
                                 <xs:restriction base="xs:integer">
                                     <xs:minInclusive value="1" />
@@ -28,7 +28,7 @@
                             </xs:simpleType>
                         </xs:attribute>
 
-                        <xs:attribute name="height" default="256">
+                        <xs:attribute name="height">
                             <xs:simpleType>
                                 <xs:restriction base="xs:integer">
                                     <xs:minInclusive value="1" />
@@ -36,6 +36,22 @@
                             </xs:simpleType>
                         </xs:attribute>
 
+                    </xs:complexType>
+                </xs:element>
+
+                <xs:element name="tabs">
+                    <xs:complexType>
+                        <xs:sequence maxOccurs="unbounded">
+                            <xs:element name="tab" minOccurs="1">
+                                <xs:complexType>
+                                    <xs:complexContent>
+                                        <xs:extension base="page">
+                                            <xs:attribute name="name" type="xs:string" default="" />
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
                     </xs:complexType>
                 </xs:element>
 
@@ -48,7 +64,7 @@
 
             <xs:attribute name="filename" type="xs:string" use="required" />
 
-            <xs:attribute name="width" default="256">
+            <xs:attribute name="width">
                 <xs:simpleType>
                     <xs:restriction base="xs:integer">
                         <xs:minInclusive value="1" />
@@ -56,7 +72,7 @@
                 </xs:simpleType>
             </xs:attribute>
 
-            <xs:attribute name="height" default="256">
+            <xs:attribute name="height">
                 <xs:simpleType>
                     <xs:restriction base="xs:integer">
                         <xs:minInclusive value="1" />

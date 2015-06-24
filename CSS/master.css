@@ -95,8 +95,7 @@ nav img {
     padding: 0px 8px 0px 8px;
 }
 
-main {
-    background-color: rgba(0, 0, 0, 0.1);
+body {
     margin-right: auto;
     margin-left: auto;
     left: 0px;
@@ -106,10 +105,47 @@ main {
     color: #fff;
 }
 
-main > div {
+body > div {
     position: relative;
     width: 100%;
-    padding: 8px 0px;
+    margin: 8px 0px;
+}
+
+.elementTitle h1 {
+    font-weight: 700;
+    font-size: 64px;
+    margin: 0px;
+    text-align: center;
+}
+
+.elementSubtitle h2 {
+    font-weight: 700;
+    font-size: 32px;
+    margin: 0px;
+    text-align: center;
+}
+
+.elementText p {
+    font-weight: 600;
+    font-size: 20px;
+    margin: 0px;
+    text-align: justify;
+}
+
+.elementImage {
+    position: relative;
+}
+
+.elementImage img {
+    position: absolute;
+    margin-left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
 }
 
 .elementGallery {
@@ -121,16 +157,21 @@ main > div {
     position: relative;
 }
 
-.elementGallery div {
+.elementGallery > img {
+    cursor:pointer;
+}
+
+.elementGallery div:first-of-type {
     display: inline-block;
     overflow: hidden;
     vertical-align: middle;
+    background-color: rgba(0, 0, 0, 0.2);
 }
 
-.elementGallery div img {
+.elementGallery div:first-of-type img {
     position: absolute;
     margin-left: 50%;
-    margin-top: 50%;
+    top: 50%;
 
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
@@ -144,29 +185,91 @@ main > div {
     -o-transition: opacity 75ms linear, left 150ms linear;
 }
 
-.elementGallery > div > div {
+.elementGallery div:last-child {
+    margin-top: 16px;
+}
+
+.elementGallery div:last-child div {
     position: relative;
-    width: 24px;
-    height: 24px;
-    line-height: 24px;
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
     margin: 6px;
-    vertical-align: center;
+    vertical-align: bottom;
     background-color: rgba(0, 0, 0, 0.3);
     font-weight: 600;
+    font-size: 18px;
+    cursor:pointer;
 
     bottom: 0px;
     opacity: 0.6;
+
     transition: opacity 75ms linear, bottom 75ms linear;
     -moz-transition: opacity 75ms linear, bottom 75ms linear;
     -webkit-transition: opacity 75ms linear, bottom 75ms linear;
     -o-transition: opacity 75ms linear, bottom 75ms linear;
 }
 
-.elementGallery > div > div:hover {
+.elementGallery div:last-child div:hover {
     opacity: 1;
     bottom: 1px;
+
     transition: opacity 150ms linear, bottom 150ms linear;
     -moz-transition: opacity 150ms linear, bottom 150ms linear;
     -webkit-transition: opacity 150ms linear, bottom 150ms linear;
     -o-transition: opacity 150ms linear, bottom 150ms linear;
+}
+
+.elementTabs > div:first-child {
+    margin-right: 130px;
+    background-color: rgba(0, 0, 0, 0.2);
+    height: 100%;
+    padding: 16px 0px;
+}
+
+.elementTabs > div:last-child {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    height: 100%;
+    width: 128px;
+}
+
+.elementTabs > div:last-child > div {
+    width: 100%;
+    height: 48px;
+    margin-bottom: 2px;
+    text-align: center;
+    line-height: 48px;
+    background-color: rgba(0, 0, 0, 0.3);
+    cursor:pointer;
+
+    margin-left: 0px;
+    opacity: 0.6;
+
+    transition: opacity 75ms linear, margin-left 75ms linear;
+    -moz-transition: opacity 75ms linear, margin-left 75ms linear;
+    -webkit-transition: opacity 75ms linear, margin-left 75ms linear;
+    -o-transition: opacity 75ms linear, margin-left 75ms linear;
+}
+
+.elementTabs > div:last-child > div:hover {
+    opacity: 1;
+    margin-left: 1px;
+
+    transition: opacity 150ms linear, margin-left 150ms linear;
+    -moz-transition: opacity 150ms linear, margin-left 150ms linear;
+    -webkit-transition: opacity 150ms linear, margin-left 150ms linear;
+    -o-transition: opacity 150ms linear, margin-left 150ms linear;
+}
+
+.elementTab {
+    display: none;
+}
+
+.elementTab > div {
+    position: relative;
+    width: 100%;
+    margin: 8px 0px;
 }

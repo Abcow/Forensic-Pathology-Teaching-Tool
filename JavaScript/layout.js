@@ -1,9 +1,62 @@
+function parseElement(xmlObject) {
+    switch(xmlObject.nodeName) {
+        case "title":
+            return new Title(xmlObject.childNodes[0].nodeValue);
+            break;
+        case "subtitle":
+            return new Subtitle(xmlObject.childNodes[0].nodeValue);
+            break;
+        case "text":
+            return new Text(xmlObject.childNodes[0].nodeValue);
+            break;
+        case "image":
+            return new Image("images/" + xmlObject.attributes.getNamedItem("filename").nodeValue,
+                             xmlObject.hasAttribute("width") ? xmlObject.attributes.getNamedItem("width").nodeValue : 256,
+                             xmlObject.hasAttribute("height") ? xmlObject.attributes.getNamedItem("height").nodeValue : 256);
+            break;
+        case "gallery":
+            var srcList = [];
+            for (var i = 0; i < xmlObject.childNodes.length; i += 1) {
+                if (xmlObject.childNodes[i].nodeName == "image") {
+                    srcList.push("images/" + xmlObject.childNodes[i].attributes.getNamedItem("filename").nodeValue);
+                }
+            }
+            return new Gallery(srcList,
+                               xmlObject.hasAttribute("width") ? xmlObject.attributes.getNamedItem("width").nodeValue : 256,
+                               xmlObject.hasAttribute("height") ? xmlObject.attributes.getNamedItem("height").nodeValue : 256);
+            break;
+        case "tabs":
+            var tabs = new Tabs();
+            console.log("0");
+            console.log(xmlObject);
+            for (var i = 0; i < xmlObject.childNodes.length; i += 1) {
+                console.log("----" + i);
+                console.log(xmlObject.childNodes[i]);
+                if (xmlObject.childNodes[i].nodeName == "tab") {
+                    var tab = new Tab(xmlObject.childNodes[i].attributes.getNamedItem("name").nodeValue);
+
+                    for (var j = 0; j < xmlObject.childNodes[i].childNodes.length; j += 1) {
+                        console.log("--------" + j);
+                        console.log(xmlObject.childNodes[i].childNodes[j])
+                        tab.addElement(parseElement(xmlObject.childNodes[i].childNodes[j]));
+                    }
+                    tabs.addTab(tab);
+                }
+            }
+            return tabs;
+            break;
+    }
+    return null;
+}
+
 function LayoutManager(page) {
     this.elementList = [];
 
     this.addElement = function(element) {
-        page.appendChild(element.container);
-        this.elementList.push(element);
+        if (element!= null) {
+            page.appendChild(element.container);
+            this.elementList.push(element);
+        }
     };
 
     this.removeElement = function(i) {
@@ -19,35 +72,8 @@ function LayoutManager(page) {
     };
 
     this.displayPage = function(xmlObject) {
-        elements = xmlObject.documentElement.childNodes
-        for (var i = 0; i < elements.length; i += 1) {
-            switch(elements[i].nodeName) {
-                case "title":
-                    this.addElement(new Title(elements[i].childNodes[0].nodeValue));
-                    break;
-                 case "subtitle":
-                    this.addElement(new Subtitle(elements[i].childNodes[0].nodeValue));
-                    break;
-                 case "text":
-                    this.addElement(new Text(elements[i].childNodes[0].nodeValue));
-                    break;
-                 case "image":
-                    this.addElement(new Image("images/" + elements[i].attributes.getNamedItem("filename").nodeValue,
-                                         elements[i].attributes.getNamedItem("width").nodeValue,
-                                         elements[i].attributes.getNamedItem("height").nodeValue));
-                    break;
-                case "gallery":
-                    var srcList = [];
-                    for (var j = 0; j < elements[i].childNodes.length; j += 1) {
-                        if (elements[i].childNodes[j].nodeName == "image") {
-                            srcList.push("images/" + elements[i].childNodes[j].attributes.getNamedItem("filename").nodeValue);
-                        }
-                    }
-                    this.addElement(new Gallery(srcList,
-                                                elements[i].attributes.getNamedItem("width").nodeValue,
-                                                elements[i].attributes.getNamedItem("height").nodeValue));
-                    break;
-            }
+        for (var i = 0; i < xmlObject.documentElement.childNodes.length; i += 1) {
+            this.addElement(parseElement(xmlObject.documentElement.childNodes[i]));
         }
     }
 }
@@ -82,11 +108,12 @@ function Text(text) {
 function Image(src, width, height) {
     this.img = document.createElement("img");
     this.img.src = src;
-    this.img.style.maxWidth = width;
-    this.img.style.maxHeight = height;
+    this.img.style.maxWidth = width + "px";
+    this.img.style.maxHeight = height + "px";
 
     this.container = document.createElement("div");
     this.container.className = "elementImage";
+    this.container.style.height = height + "px";
     this.container.appendChild(this.img);
 }
 
@@ -120,24 +147,23 @@ function Gallery(srcList, width, height) {
     this.changeImage = function(n) {
         if (n >= 0 && n < this.imgList.length && n != this.currentImage) {
             
-            direction = (n > this.currentImage) ? 1 : -1;    
-            var newImg = this.imgList[n];
+            direction = (n > this.currentImage) ? 1 : -1;
             
             var i = n - direction;
             while (i != this.currentImage) {
                 this.imgList[i].style.left = direction * -1 * width + "px";
+                console.log(i);
                 i -= direction;
             }
 
             this.imgList[this.currentImage].style.opacity = 0;
-            this.imgList[this.currentImage].style.removeProperty("color");
-            this.imgList[this.currentImage].style.removeProperty("backgroundColor");
+            this.imgList[this.currentImage].style.left = direction * -1 * width + "px";
             this.navContainer.childNodes[this.currentImage].style.removeProperty("color")
             this.navContainer.childNodes[this.currentImage].style.removeProperty("background-color")
 
     
-            newImg.style.left = "0px";
-            newImg.style.opacity = 1;
+            this.imgList[n].style.left = "0px";
+            this.imgList[n].style.opacity = 1;
             this.navContainer.childNodes[n].style.color = "#333";
             this.navContainer.childNodes[n].style.backgroundColor = "rgba(255, 255, 255, 0.9)";
 
@@ -192,6 +218,70 @@ function Gallery(srcList, width, height) {
     this.container.appendChild(this.arrowPrev);
     this.container.appendChild(this.imageContainer);
     this.container.appendChild(this.arrowNext);
-    this.container.appendChild(document.createElement("br"));
     this.container.appendChild(this.navContainer);
+}
+
+function Tabs() {
+    this.tabList = []
+    this.currentTab = 0;
+
+    this.navContainer = document.createElement("div");
+
+    this.contentContainer = document.createElement("div");
+
+    this.container = document.createElement("div");
+    this.container.className = "elementTabs";
+    this.container.appendChild(this.contentContainer);
+    this.container.appendChild(this.navContainer);
+
+    var _this = this;
+
+    this.addTab = function(tab) {
+        this.tabList.push(tab);
+        this.contentContainer.appendChild(tab.container)
+        var navTab = document.createElement("div");
+        navTab.innerHTML = tab.name;
+        var i = this.tabList.length - 1;
+        navTab.onclick = function() {
+            _this.changeTab(i);
+        }
+        this.navContainer.appendChild(navTab);
+
+        if (i == 0) {
+            tab.container.style.display = "initial";
+        }
+    };
+
+    this.changeTab = function(n) {
+        if (n >= 0 && n < this.tabList.length && n != this.currentTab) {
+            this.tabList[this.currentTab].container.style.removeProperty("display");
+            this.navContainer.childNodes[this.currentTab].style.removeProperty("color")
+            this.navContainer.childNodes[this.currentTab].style.removeProperty("background-color")
+
+            this.tabList[n].container.style.display = "initial";
+            this.navContainer.childNodes[n].style.color = "#333";
+            this.navContainer.childNodes[n].style.backgroundColor = "rgba(255, 255, 255, 0.9)";
+
+            this.currentTab = n;
+        }
+    };
+}
+
+function Tab(name) {
+    this.name = name;
+    this.elementList = [];
+    this.container = document.createElement("div");
+    this.container.className = "elementTab";
+
+    this.addElement = function(element) {
+        if (element!= null) {
+            this.container.appendChild(element.container);
+            this.elementList.push(element);
+        }
+    };
+
+    this.removeElement = function(i) {
+        this.container.removeChild(elementList[i].container);
+        this.elementList.splice(i, 1);
+    };
 }
