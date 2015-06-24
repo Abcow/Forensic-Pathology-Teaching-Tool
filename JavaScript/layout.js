@@ -1,5 +1,3 @@
-var layoutManager = null;
-
 function LayoutManager(page) {
     this.elementList = [];
 
@@ -14,10 +12,44 @@ function LayoutManager(page) {
     };
 
     this.clearPage = function() {
-        for (var i = 0; i < elementList.Length; i++) {
-            this.removeElement(i);
+        while (main.firstChild) {
+            main.removeChild(main.firstChild);
         }
+        this.elementList = [];
     };
+
+    this.displayPage = function(xmlObject) {
+        elements = xmlObject.documentElement.childNodes
+        for (var i = 0; i < elements.length; i += 1) {
+            switch(elements[i].nodeName) {
+                case "title":
+                    this.addElement(new Title(elements[i].childNodes[0].nodeValue));
+                    break;
+                 case "subtitle":
+                    this.addElement(new Subtitle(elements[i].childNodes[0].nodeValue));
+                    break;
+                 case "text":
+                    this.addElement(new Text(elements[i].childNodes[0].nodeValue));
+                    break;
+                 case "image":
+                    this.addElement(new Image("images/" + elements[i].attributes.getNamedItem("filename").nodeValue,
+                                         elements[i].attributes.getNamedItem("width").nodeValue,
+                                         elements[i].attributes.getNamedItem("height").nodeValue));
+                    break;
+                case "gallery":
+                    var srcList = [];
+                    for (var j = 0; j < elements[i].childNodes.length; j += 1) {
+                        if (elements[i].childNodes[j].nodeName == "image") {
+                            srcList.push("images/" + elements[i].childNodes[j].attributes.getNamedItem("filename").nodeValue);
+                        }
+                    }
+                    this.addElement(new Gallery(srcList,
+                                                elements[i].attributes.getNamedItem("width").nodeValue,
+                                                elements[i].attributes.getNamedItem("height").nodeValue));
+                    break;
+            }
+        }
+    }
 }
 
 function Title(text) {
@@ -36,7 +68,7 @@ function Subtitle(text) {
     this.container.appendChild(this.h2);
 }
 
-function Paragraph(text) {
+function Text(text) {
     this.p = document.createElement("p");
     this.p.innerHTML = text;
 
@@ -55,7 +87,7 @@ function Image(src, width, height) {
     this.container.appendChild(this.img);
 }
 
-function ImageSet(srcList, width, height) {
+function Gallery(srcList, width, height) {
     this.imgList = [];
     for (var i = 0; i < srcList.length; i += 1) {
         var img = document.createElement("img");
@@ -149,16 +181,3 @@ function ImageSet(srcList, width, height) {
     this.container.appendChild(this.imageContainer);
     this.container.appendChild(this.arrowNext);
 }
-
-window.onload = function() {
-    var layoutManager = new LayoutManager(document.getElementsByTagName("main")[0]);
-    layoutManager.addElement(new Title("Hello"));
-    layoutManager.addElement(new Subtitle("Hello"));
-    layoutManager.addElement(new Paragraph("Hello"));
-    layoutManager.addElement(new Image("images/button-left.png", 64, 64));
-    layoutManager.addElement(new ImageSet(["images/sets/test/0.jpg", "images/sets/test/1.jpg", "images/sets/test/2.jpg", "images/sets/test/3.png", "images/sets/test/4.png", "images/sets/test/5.png"], 256, 256));
-    layoutManager.addElement(new Title("Forensic Pathology Teaching tool example Text page"));
-    layoutManager.addElement(new Subtitle("Example Subtitle"));
-    layoutManager.addElement(new Paragraph("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ullamcorper, leo pulvinar tincidunt efficitur, ipsum libero bibendum ante, et malesuada mi nisi eget dolor. Nulla non elit eget ex laoreet gravida. Nulla faucibus orci sit amet risus dignissim finibus. Integer facilisis commodo velit. Aliquam lacus risus, porttitor rutrum nulla eu, rutrum consequat diam. Sed nec elit ut ligula pulvinar tristique sed id erat. Mauris mollis lorem non metus ornare tincidunt. Etiam imperdiet libero sit amet turpis commodo, eget maximus orci rutrum."));
-    layoutManager.addElement(new Paragraph("Sed scelerisque, eros vel tincidunt euismod, eros erat pharetra nisl, id mattis elit arcu varius tellus. Suspendisse laoreet elit ac diam hendrerit, quis sollicitudin nisi maximus. In ornare urna ut dui bibendum tincidunt. Fusce vitae ante tincidunt, fermentum orci in, sodales dui. Aliquam et tellus enim. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Ut vehicula nisl eget lectus scelerisque, sed sodales erat dapibus. Morbi vel tellus eros. Maecenas lacinia nibh sed finibus rhoncus. Suspendisse enim leo, tempor eget tempor eget, molestie in felis. In id diam velit. Cras ex nisl, porttitor quis auctor non, lacinia id ligula. Cras lacinia orci a nunc rhoncus pretium. Quisque rhoncus orci at lectus pretium dapibus. Nulla blandit quam nec auctor sagittis."));
-};

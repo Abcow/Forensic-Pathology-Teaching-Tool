@@ -3,18 +3,29 @@
 <html lang="en">
 
     <head>
-    <link rel="shortcut icon" href="images/icon.ico" />
+    
+        <meta charset="UTF-8">
+    
+        <link rel="shortcut icon" href="images/icon.ico" />
+        
         <link type="text/css" rel="stylesheet" href="CSS/master.css" />
+        
         <script type="text/javascript" src="JavaScript/ajax.js"> </script>
+        
+        <script type="text/javascript" src="JavaScript/layout.js"> </script>
+        
+        <script type="text/javascript">
+            window.onload = function() {
+                var layoutManager = new LayoutManager(document.getElementsByTagName("main")[0]);
+                loadPage("test", layoutManager)
+            };
+        </script>
 
     </head>
 
     <body>
         
         <main>
-            <p>
-                TESTING
-            </p>
         </main>
 
         <nav>
