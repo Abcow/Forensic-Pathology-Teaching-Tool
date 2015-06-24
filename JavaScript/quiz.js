@@ -28,13 +28,17 @@ window.onload = function() {
 
 }
 
-function showmoreinfo(){
-	alert( "Kappa... " + more);
+function showmoreinfo(srctext){
+	var para = document.createElement("p");
+   	var text = document.createTextNode(srctext);
+   	para.appendChild(text);
+   	document.getElementsByTagName("main")[0].appendChild(para);
 }
 
 function createButton(text, context, func){
     var button = document.createElement("input");
     button.type = "button";
+    button.id = "delme";
     button.value = text;
     button.onclick = func;
     context.appendChild(button);
@@ -47,9 +51,10 @@ function removeFal(){
 	for(i = 0; i < l; i++){
    		answers[0].parentNode.removeChild(answers[0]);
    	}
+   	
+   	showmoreinfo(wrongtext);
 
-   	document.getElementById("blank").innerHTML = wrongtext;
-   	createButton("More Information", document.getElementsByTagName("main")[0], function(){ showmoreinfo() });
+   	createButton("More Information", document.getElementsByTagName("main")[0], function(){ showmoreinfo(moretext); deletebutton(); });
 
 }
 
@@ -61,9 +66,16 @@ function removeTru(){
    		answers[0].parentNode.removeChild(answers[0]);
    	}
 
-   	document.getElementById("blank").innerHTML = correcttext;
-   	createButton("More Information", document.getElementsByTagName("main")[0], function(){ showmoreinfo() });
+   	
+   	showmoreinfo(correcttext);
 
+   	createButton("More Information", document.getElementsByTagName("main")[0], function(){ showmoreinfo(moretext); deletebutton(); });
+
+}
+
+function deletebutton(){
+	var butt = document.getElementById("delme");
+	butt.parentNode.removeChild(butt);
 }
 
 
