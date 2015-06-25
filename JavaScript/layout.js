@@ -285,3 +285,27 @@ function Tab(name) {
         this.elementList.splice(i, 1);
     };
 }
+
+
+function Title(text) {
+    this.h1 = document.createElement("h1");
+    this.h1.innerHTML = text;
+
+    this.container = document.createElement("div");
+    this.container.className = "elementTitle";
+    this.container.appendChild(this.h1);
+}
+
+function Answer(names, response){
+	this.answer = document.createElement("div");
+	this.answer.innerHTML = name;
+
+	this.container = document.createElement("div");
+	this.container.className = "elementAnswer";
+	this.container.appendChild(this.answer);
+
+	this.answer.onclick = function(){
+		layoutManager.addElement(parseElement(response));
+	}
+
+}

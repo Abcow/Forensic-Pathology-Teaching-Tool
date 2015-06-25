@@ -7,54 +7,6 @@ body {
     margin: 0px;
 }
 
-#quiz{
-    font-size: 20px;
-    list-style-type: none;
-}
-
-#correct{
-    opacity: 0;
-}
-
-#wrong{
-    opacity: 0;
-}
-
-#quiz li{
-
-    cursor: pointer;
-
-    padding-top: 15px;
-    padding-bottom: 15px;
-    max-width: 50%;
-    margin-right: auto;
-}
-
-#quiz li:hover{
-
-    border-style: solid;
-    border-width: 2px;
-    border-color: black;
-
-    padding-top: 13px;
-    padding-bottom: 13px;
-
-    color: black;
-    background-color: white;
-}
-
-#refresh {
-    width: 64px;
-    height: 64px;
-    float: right;
-}
-
-#mor{
-    width: 64px;
-    height: 64px;
-    float: left;
-}
-
 nav {
     position: fixed;
     color: #FFF;
@@ -283,4 +235,31 @@ body > div {
     position: relative;
     width: 100%;
     margin: 8px 0px;
+}
+
+.elementAnswer > div {
+    width: 424px;
+    padding: 12px;
+    margin-bottom: 2px;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.3);
+    cursor:pointer;
+
+    margin-left: 0px;
+    opacity: 0.6;
+
+    transition: opacity 75ms linear, margin-left 75ms linear;
+    -moz-transition: opacity 75ms linear, margin-left 75ms linear;
+    -webkit-transition: opacity 75ms linear, margin-left 75ms linear;
+    -o-transition: opacity 75ms linear, margin-left 75ms linear;
+}
+
+.elementAnswer > div:hover {
+    opacity: 1;
+    margin-left: 1px;
+
+    transition: opacity 150ms linear, margin-left 150ms linear;
+    -moz-transition: opacity 150ms linear, margin-left 150ms linear;
+    -webkit-transition: opacity 150ms linear, margin-left 150ms linear;
+    -o-transition: opacity 150ms linear, margin-left 150ms linear;
 }
