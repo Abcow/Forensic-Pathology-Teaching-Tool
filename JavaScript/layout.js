@@ -158,9 +158,9 @@ function Gallery(srcList, width, height) {
     this.arrowNext.src = "images/button-right.png";
 
     this.currentImage = 0;
-    this.arrowPrev.style.opacity = 0.4;
+    this.arrowPrev.style.opacity = 0.2;
     if (this.imgList.length < 2) {
-        this.arrowNext.style.opacity = 0.4;
+        this.arrowNext.style.opacity = 0.2;
     }
 
     this.changeImage = function(n) {
@@ -189,13 +189,13 @@ function Gallery(srcList, width, height) {
             this.currentImage = n;
 
             if (this.currentImage < 1) {
-                this.arrowPrev.style.opacity = 0.4;
+                this.arrowPrev.style.opacity = 0.2;
             } else {
                 this.arrowPrev.style.opacity = 1;
             }
 
             if (this.currentImage > this.imgList.length - 2) {
-                this.arrowNext.style.opacity = 0.4;
+                this.arrowNext.style.opacity = 0.2;
             } else {
                 this.arrowNext.style.opacity = 1;
             }
@@ -324,21 +324,21 @@ function Button(text, xmlObjectList) {
 function Popup() {
     this.name = name;
 
-    this.contentContainer = document.createElement("div");
+    this.overlay = document.createElement("div");
+    this.overlay.innerHTML = "Click anywhere to close.";
 
-    this.close = document.createElement("div");
-    this.close.innerHTML = "Close";
+    this.contentContainer = document.createElement("div");
 
     var _this = this;
 
-    this.close.onclick = function() {
+    this.overlay.onclick = function() {
         _this.container.parentNode.removeChild(_this.container);
     }
 
     this.container = document.createElement("div");
     this.container.className = "elementPopup";
+    this.container.appendChild(this.overlay);
     this.container.appendChild(this.contentContainer);
-    this.container.appendChild(this.close);
 
     this.addElement = function(element) {
         if (element != null) {
