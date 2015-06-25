@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<<<<<<< HEAD
-<page xmlns="http://www.w3schools.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.w3schools.com page.xsd" next="quiz">
-=======
 <page xmlns="http://www.w3schools.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.w3schools.com page.xsd" next="1-video">
->>>>>>> e6dafd4f8e2f53d4e5f7616ebd8dc485bd500717
 	<title>Forensic Pathology Teaching Tool</title>
 	<subtitle>About this Project</subtitle>
+	<padding height="10" />
+	<text>Big Padding</text>
+	<padding height="10" />
 	<text>This resource has been created to give you a basic understanding of forensic pathology. It will guide you through the forensic process from the initial crime scene to the autopsy, toxicology and histology.</text>
-	<padding />
+	<padding height="0.5" />
+	<text>Little Padding</text>
+	<padding height="0.5" />
 	<text>Following this guidance you will begin your own case, trying to ascertain the cause of death. I hope you enjoy using this as much as we did making it.</text>
 	<image filename="0.jpg" width="800" />
-	<navigation-button destination="quiz">Hey</navigation-button>
+	<navigation-button destination="6-horsequiz">A link to the end!</navigation-button>
 </page>

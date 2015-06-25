@@ -78,7 +78,6 @@
                 </xs:complexType>
             </xs:element>
 
-
             <xs:element name="padding">
                 <xs:element name="navigation-button">
                     <xs:complexType>
@@ -91,12 +90,20 @@
                 </xs:element>
             </xs:element>
 
+            <xs:element name="video" type="media" />
+
+            <xs:element name="audio">
+                <xs:complexType>
+                    <xs:attribute name="filename" type="xs:string" use="required" />
+                </xs:complexType>
+            </xs:element>
+
             </xs:choice>
         </xs:complexType>
     </xs:element>
 
     <xs:element name="image">
-        <xs:complexType>
+        <xs:complexType name="media">
 
             <xs:attribute name="filename" type="xs:string" use="required" />
 

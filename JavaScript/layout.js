@@ -58,6 +58,17 @@ function parseElement(xmlObject) {
 
         case "navigation-button":
             return new NavigationButton(xmlObject.childNodes[0].nodeValue, xmlObject.attributes.getNamedItem("destination").nodeValue);
+            break;
+
+        case "video":
+            return new Video("videos/" + xmlObject.attributes.getNamedItem("filename").nodeValue,
+                             xmlObject.hasAttribute("width") ? xmlObject.attributes.getNamedItem("width").nodeValue : 256,
+                             xmlObject.hasAttribute("height") ? xmlObject.attributes.getNamedItem("height").nodeValue : 256);
+            break;
+
+        case "audio":
+            return new Audio("audio/" + xmlObject.attributes.getNamedItem("filename").nodeValue);
+            break;
     }
     return null;
 }
@@ -364,8 +375,9 @@ function Image(src, width, height) {
 }
 
 function Audio(src){
-    this.audio = document.createElement("auido controls");
+    this.audio = document.createElement("audio");
     this.audio.src = src;
+    this.audio.controls = true;
     this.type = ""
 
     this.container = document.createElement("div");
@@ -374,13 +386,15 @@ function Audio(src){
 }
 
 function Video(src, width, height){
-    this.video = document.createElement("video controls")
+    this.video = document.createElement("video")
     this.video.src = src;
-    this.video.style.maxWidth = width + "px";
-    this.video.style.maxHeight = height + "px";
+    this.video.controls = true;
+    this.video.style.width = width + "px";
+    this.video.style.height = height + "px";
 
     this.container = document.createElement("div");
     this.container.className = "elementVideo";
+    this.container.style.height = height + "px";
     this.container.appendChild(this.video);
 }
 

@@ -97,7 +97,7 @@ body > div {
     position: relative;
 }
 
-.elementImage img {
+.elementImage img, .elementVideo video {
     position: absolute;
     left: 50%;
     top: 50%;
@@ -317,4 +317,14 @@ body > div {
     -webkit-transform: translate(-50%, -50%);
     -o-transform: translate(-50%, -50%);
     z-index: 1;
+}
+
+.elementAudio audio {
+    margin-left: 50%;
+
+    transform: translate(-50%, 0%);
+    -ms-transform: translate(-50%, 0%);
+    -moz-transform: translate(-50%, 0%);
+    -webkit-transform: translate(-50%, 0%);
+    -o-transform: translate(-50%, 0%);
 }
