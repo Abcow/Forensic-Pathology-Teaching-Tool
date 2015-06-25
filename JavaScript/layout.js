@@ -340,3 +340,36 @@ function Popup() {
         }
     };
 }
+
+function Image(src, width, height) {
+    this.img = document.createElement("img");
+    this.img.src = src;
+    this.img.style.maxWidth = width + "px";
+    this.img.style.maxHeight = height + "px";
+
+    this.container = document.createElement("div");
+    this.container.className = "elementImage";
+    this.container.style.height = height + "px";
+    this.container.appendChild(this.img);
+}
+
+function audio(src){
+    this.audio = document.createElement("auido controls");
+    this.audio.src = src;
+    this.type = ""
+
+    this.container = document.createElement("div");
+    this.container.className = "elementAudio";
+    this.container.appendChild(this.audio);
+}
+
+function video(src, width, height){
+    this.video = document.createElement("video controls")
+    this.video.src = src;
+    this.video.style.maxWidth = width + "px";
+    this.video.style.maxHeight = height + "px";
+
+    this.container = document.createElement("div");
+    this.container.className = "elementVideo";
+    this.container.appendChild(this.video);
+}

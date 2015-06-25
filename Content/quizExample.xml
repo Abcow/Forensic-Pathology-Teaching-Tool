@@ -4,7 +4,7 @@
     xmlns="http://www.w3schools.com"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.w3schools.com page.xsd"
-    previous="example">
+    next="quizExample" prev="home">
 
     <title>What is the capital of Germany?</title>
     <popup-button text="Munich">

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<page xmlns="http://www.w3schools.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.w3schools.com page.xsd" next="quizExample" prev="home">
+	<title>This is a human head</title>
+	<subtitle>It's pretty gross</subtitle>
+	<gallery width="800" height="600">
+		<image filename="bun.jpg" />
+		<image filename="butt.jpg" />
+		<image filename="bunny.jpg" />
+	</gallery>
+</page>
