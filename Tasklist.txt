@@ -1,8 +1,3 @@
-Add content area div to page
-Create javascript classes for each object
-Decide format for defining pages		- Done, needs reviewing
-Create Javascript function for creating pages
-Decide aesthetic for each element
 
 Opening in Chrome Ajax commands
 
@@ -13,7 +8,9 @@ open -a 'Google Chrome' --args --allow-file-access-from-files (on Mac OS X)
 TO-DO:
 Make Navigation Buttons Work
 Make interactive thing
-Center buttons
+Center buttons		DID IT
 Add page overlay to popup
 Do something with galleries...
+	- makes definable parts clickable
 Maybe add sound thing, idk...
+User Guide, for users, not clients
