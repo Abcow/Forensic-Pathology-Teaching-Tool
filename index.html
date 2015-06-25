@@ -21,7 +21,7 @@
         <script type="text/javascript">
             window.onload = function() {
                 var layoutManager = new LayoutManager(document.body);
-                loadPage("quizExample", layoutManager)
+                loadPage("test", layoutManager)
             };
         </script>
 
@@ -42,11 +42,11 @@
                 </li>
 
                 <li id="right">
-                    <img src="images/button-right.png">
+                    <img src="images/button-right.png" onclick= "nextPage();">
                 </li>
 
                 <li id="left">
-                    <img src="images/button-left.png">
+                    <img src="images/button-left.png" onclick= "prevPage();" >
                 </li>
 
                 <li id="home">

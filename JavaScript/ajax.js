@@ -24,3 +24,5 @@ function loadPage(name, layoutManager) {
     xmlhttp.send();
 
 }
+
+

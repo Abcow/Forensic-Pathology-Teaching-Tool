@@ -74,6 +74,23 @@ function LayoutManager(page) {
     };
 
     this.displayPage = function(xmlObject) {
+         nextP = xmlObject.documentElement.attributes.getNamedItem("next").nodeValue;
+         prevP = xmlObject.documentElement.attributes.getNamedItem("prev").nodeValue;
+
+            prevPage = function(){
+                alert(prevP);
+                loadPage(prevPage, LayoutManager);
+            }
+
+            nextPage = function(){
+                alert(nextP);
+                loadPage(nextPage, LayoutManager);
+            }
+
+            homePage = function(){
+                loadPage("home", LayoutManager);
+            }
+
         for (var i = 0; i < xmlObject.documentElement.childNodes.length; i += 1) {
             this.addElement(parseElement(xmlObject.documentElement.childNodes[i]));
         }
