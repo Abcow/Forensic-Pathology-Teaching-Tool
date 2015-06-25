@@ -18,11 +18,13 @@ Image:
 Gallery: (For different views)
 	Multiple images together
 
+TabedContainer
+
 Sound Clip:
 	Plays a sound when clicked
 
-Quiz Element:
-	Question
+
+Question:
 	n Answers
 	Which answer is correct
 	Message for correct answer
