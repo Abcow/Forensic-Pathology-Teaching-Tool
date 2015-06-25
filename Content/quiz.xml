@@ -39,32 +39,24 @@
 	</tabs>
 
 	<title>What's that man holding?</title>
-    <button text="Butterflys">
-        <popup>
-            <subtitle>Incorrect!</subtitle>
-            <text>No he isn't, this is a butterfly</text>
-            <image filename="butt.jpg"/>
-        </popup>
-    </button>
+    <popup-button text="Butterflys">
+        <subtitle>Incorrect!</subtitle>
+        <text>No he isn't, this is a butterfly</text>
+        <image filename="butt.jpg"/>
+    </popup-button>
 
-    <button text="A human head">
-        <popup>
-            <subtitle>No!</subtitle>
-            <text>No, that would be insane. Who puts pictures like that in places?</text>
-        </popup>
-    </button>
+    <popup-button text="A human head">
+        <subtitle>No!</subtitle>
+        <text>No, that would be insane. Who puts pictures like that in places?</text>
+    </popup-button>
 
-    <button text="The letter G">
-        <popup>
-            <text>Who wrote this quiz?</text>
-        </popup>
-    </button>
+    <popup-button text="The letter G">
+        <text>Who wrote this quiz?</text>
+    </popup-button>
 
-    <button text="Hamburg">
-        <popup>
-            <subtitle>Correct!</subtitle>
-            <text>Hamburg is the second largest city in Germany. Well done!</text>
-        </popup>
-    </button>
+    <popup-button text="Hamburg">
+        <subtitle>Correct!</subtitle>
+        <text>Hamburg is the second largest city in Germany. Well done!</text>
+    </popup-button>
 
 </page>
