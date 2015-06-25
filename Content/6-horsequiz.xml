@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<page xmlns="http://www.w3schools.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.w3schools.com page.xsd" prev="quiz">
+<page xmlns="http://www.w3schools.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.w3schools.com page.xsd" prev="5-quiz">
 	<subtitle>What is this sound?</subtitle>
 	<audio />
     <popup-button text="A hourse">
