@@ -162,6 +162,8 @@ body > div {
 
 .elementGallery {
     text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .elementGallery > * {
@@ -234,7 +236,7 @@ body > div {
 }
 
 .elementTabs > div:first-child {
-    margin: 0px 130px;
+    margin-right: 130px;
     background-color: rgba(0, 0, 0, 0.2);
     height: 100%;
     padding: 16px 0px;
@@ -283,4 +285,22 @@ body > div {
     position: relative;
     width: 100%;
     margin: 8px 0px;
+}
+
+.elementPopup {
+    position: fixed;
+    width: 600px;
+    background-color: #222;
+    padding-bottom: 64px;
+}
+
+.elementPopup > div:first-child {
+    width: 100%;
+}
+
+.elementPopup > div:last-child {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    height: 64px;
 }

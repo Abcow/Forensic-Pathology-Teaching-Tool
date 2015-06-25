@@ -2,7 +2,7 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.w3schools.com" xmlns="http://www.w3schools.com" elementFormDefault="qualified">
     
     <xs:element name="page">
-        <xs:complexType>
+        <xs:complexType name="container">
             <xs:choice maxOccurs="unbounded">
 
                 <xs:element name="title" type="xs:string" />
@@ -45,7 +45,7 @@
                             <xs:element name="tab" minOccurs="1">
                                 <xs:complexType>
                                     <xs:complexContent>
-                                        <xs:extension base="page">
+                                        <xs:extension base="container">
                                             <xs:attribute name="name" type="xs:string" default="" />
                                         </xs:extension>
                                     </xs:simpleContent>
@@ -54,6 +54,8 @@
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
+
+                <xs:element name="popup" type="container" />
 
             </xs:choice>
         </xs:complexType>
