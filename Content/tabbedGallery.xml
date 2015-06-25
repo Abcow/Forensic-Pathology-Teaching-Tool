@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<page xmlns="http://www.w3schools.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.w3schools.com page.xsd" next="quiz" prev="gallery1">
+<page xmlns="http://www.w3schools.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.w3schools.com page.xsd" next="quizExample" prev="gallery1">
 	<title>Gallery</title>
 	<text>This is all the different Information from your case, review it here in this great format</text>
 <tabs>
@@ -36,5 +36,5 @@
 			</gallery>
 		</tab>
 
-	</tabs>
+</tabs>
 </page>
