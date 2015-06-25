@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<page xmlns="http://www.w3schools.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.w3schools.com page.xsd" next="quizExample" prev="home">
+	<title>Gallery</title>
+	<text>This is all the different Information from your case, review it here in this great format</text>
+<tabs>
+		<tab name="Bunnies">
+			<subtitle>Bunnies</subtitle>
+			<gallery width="700" height="600">
+				<image filename="bun.jpg" />
+				<image filename="butt.jpg" />
+				<image filename="5.png" />
+			</gallery>
+		</tab>
+		<tab name="Butterflys">
+			<subtitle>Butterflys</subtitle>
+			<gallery width="700" height="600">
+				<image filename="butt.jpg" />
+			</gallery>
+		</tab>
+		<tab name="A French Man">
+			<subtitle>A French Man</subtitle>
+			<gallery width="700" height="600">
+				<image filename="bunny.jpg" />
+				<image filename="bunny-2.jpg" />
+				<image filename="bunny-3.jpg" />
+				<image filename="bunny-4.jpg" />
+			</gallery>
+		</tab>
+		<tab name="Something Really Cool">
+			<subtitle>Something Really Cool</subtitle>
+			<gallery width="700" height="600">
+				<image filename="4.png" />
+				<image filename="5.png" />
+				<image filename="bunny.jpg" />
+			</gallery>
+		</tab>
+
+	</tabs>
+</page>
