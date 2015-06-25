@@ -1,4 +1,4 @@
-function loadPage(name, layoutManager) {
+function loadPage(name) {
     if (name != null) {
         var xmlhttp;
         if (window.XMLHttpRequest) {

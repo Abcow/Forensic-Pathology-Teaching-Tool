@@ -10,18 +10,17 @@
         
         <link type="text/css" rel="stylesheet" href="CSS/master.css" />
 
-        <link 'http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700' rel='stylesheet' type='text/css'>
-        
-        <script type="text/javascript" src="JavaScript/ajax.js"> </script>
+        <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700' rel='stylesheet' type='text/css'>
         
         <script type="text/javascript" src="JavaScript/layout.js"> </script>
 
-        <script type="text/javascript" src="JavaScript/navigation.js"> </script>
+        <script type="text/javascript" src="JavaScript/ajax.js"> </script>
         
         <script type="text/javascript">
+        var layoutManager, prevPage, nextPage;
             window.onload = function() {
                 layoutManager = new LayoutManager(document.body);
-                loadPage("quiz", layoutManager);
+                loadPage("home");
             };
         </script>
 
@@ -42,15 +41,15 @@
                 </li>
 
                 <li id="right">
-                    <img src="images/button-right.png" onclick="loadPage(nextPage, layoutManager);">
+                    <img src="images/button-right.png" onclick="loadPage(nextPage);">
                 </li>
 
                 <li id="left">
-                    <img src="images/button-left.png" onclick="loadPage(prevPage, layoutManager);" >
+                    <img src="images/button-left.png" onclick="loadPage(prevPage);" >
                 </li>
 
                 <li id="home">
-                    <img src="images/button-home.png" onclick="loadPage('home', layoutManager);">
+                    <img src="images/button-home.png" onclick="loadPage('home');">
                 </li>
 
             </ul>

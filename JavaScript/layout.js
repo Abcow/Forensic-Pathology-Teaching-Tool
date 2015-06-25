@@ -1,31 +1,3 @@
-function loadPage(name, layoutManager) {
-    if (name != null) {
-        var xmlhttp;
-        if (window.XMLHttpRequest) {
-            xmlhttp = new XMLHttpRequest();
-        } else {
-            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-        }
-
-        xmlhttp.onreadystatechange = function() {
-            if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-                if (window.DOMParser) {
-                    parser = new DOMParser();
-                    xmlObject = parser.parseFromString(xmlhttp.responseText, "text/xml");
-                } else {
-                    xmlObject = new ActiveXObject("Microsoft.XMLDOM");
-                    xmlObject.async = false;
-                    xmlObject.loadXML(xmlhttp.responseText);
-                }
-                layoutManager.displayPage(xmlObject);
-            }
-        }
-
-        xmlhttp.open("GET", "content/" + name + ".xml", true);
-        xmlhttp.send();
-    }
-}
-
 function parseElement(xmlObject) {
     switch(xmlObject.nodeName) {
         case "title":
@@ -79,6 +51,13 @@ function parseElement(xmlObject) {
             }
             return new popupButton(xmlObject.attributes.getNamedItem("text").nodeValue, popup);
             break;
+
+        case "padding":
+            return xmlObject.hasAttribute("height") ? new Padding(xmlObject.attributes.getNamedItem("height").nodeValue) : new Padding(2);
+            break;
+
+        case "navigation-button":
+            return new NavigationButton(xmlObject.childNodes[0].nodeValue, xmlObject.attributes.getNamedItem("destination").nodeValue);
     }
     return null;
 }
@@ -384,7 +363,7 @@ function Image(src, width, height) {
     this.container.appendChild(this.img);
 }
 
-function audio(src){
+function Audio(src){
     this.audio = document.createElement("auido controls");
     this.audio.src = src;
     this.type = ""
@@ -394,7 +373,7 @@ function audio(src){
     this.container.appendChild(this.audio);
 }
 
-function video(src, width, height){
+function Video(src, width, height){
     this.video = document.createElement("video controls")
     this.video.src = src;
     this.video.style.maxWidth = width + "px";
@@ -403,4 +382,26 @@ function video(src, width, height){
     this.container = document.createElement("div");
     this.container.className = "elementVideo";
     this.container.appendChild(this.video);
+}
+
+function Padding(height) {
+    this.container = document.createElement("div");
+    this.container.className = "elementImage";
+    this.container.style.height = height * 16 + "px";
+}
+
+
+function NavigationButton(text, destination) {
+
+    this.button = document.createElement("div");
+    this.button.innerHTML = text;
+
+    this.container = document.createElement("div");
+    this.container.className = "elementButton";
+    this.container.appendChild(this.button);
+
+    this.button.onclick = function() {
+        loadPage(destination)
+    }
+
 }
