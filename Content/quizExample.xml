@@ -6,7 +6,7 @@
     xsi:schemaLocation="http://www.w3schools.com page.xsd"
     previous="example">
 
-    <title>Head</title>
+    <title>What is the capital of Germany?</title>
     <button text="Munich">
         <popup>
             <subtitle>Incorrect!</subtitle>
@@ -32,4 +32,5 @@
             <text>Hamburg is the second largest city in Germany.</text>
         </popup>
     </button>
+
 </page>
