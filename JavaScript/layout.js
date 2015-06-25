@@ -44,11 +44,14 @@ function parseElement(xmlObject) {
             return tabs;
             break;
 
+        case "button":
+            return new Button(xmlObject.attributes.getNamedItem("text").nodeValue, xmlObject.childNodes);
+            break;
+
         case "popup":
             var popup = new Popup();
             for (var i = 0; i < xmlObject.childNodes.length; i += 1) {
-                    popup.addElement(parseElement(xmlObject.childNodes[i]));
-                }
+                popup.addElement(parseElement(xmlObject.childNodes[i]));
             }
             return popup;
             break;
@@ -57,25 +60,17 @@ function parseElement(xmlObject) {
 }
 
 function LayoutManager(page) {
-    this.elementList = [];
 
     this.addElement = function(element) {
-        if (element!= null) {
+        if (element != null) {
             page.appendChild(element.container);
-            this.elementList.push(element);
         }
-    };
-
-    this.removeElement = function(i) {
-        page.removeChild(elementList[i].container);
-        this.elementList.splice(i, 1);
     };
 
     this.clearPage = function() {
         while (main.firstChild) {
             main.removeChild(main.firstChild);
         }
-        this.elementList = [];
     };
 
     this.displayPage = function(xmlObject) {
@@ -278,57 +273,49 @@ function Tabs() {
 
 function Tab(name) {
     this.name = name;
-    this.elementList = [];
     this.container = document.createElement("div");
     this.container.className = "elementTab";
 
     this.addElement = function(element) {
-        if (element!= null) {
+        if (element != null) {
             this.container.appendChild(element.container);
-            this.elementList.push(element);
         }
     };
-
-    this.removeElement = function(i) {
-        this.container.removeChild(elementList[i].container);
-        this.elementList.splice(i, 1);
-    };
 }
 
-
-function Title(text) {
-    this.h1 = document.createElement("h1");
-    this.h1.innerHTML = text;
-
-    this.container = document.createElement("div");
-    this.container.className = "elementTitle";
-    this.container.appendChild(this.h1);
-}
-
-function Answer(names, response){
-	this.answer = document.createElement("div");
-	this.answer.innerHTML = name;
+function Button(text, xmlObjectList) {
+	this.button = document.createElement("div");
+	this.button.innerHTML = text;
 
 	this.container = document.createElement("div");
-	this.container.className = "elementAnswer";
-	this.container.appendChild(this.answer);
+	this.container.className = "elementButton";
+	this.container.appendChild(this.button);
 
-	this.answer.onclick = function(){
-		layoutManager.addElement(parseElement(response));
+    var _this = this;
+
+	this.button.onclick = function() {
+        for (var i = 0; i < xmlObjectList.length; i += 1) {
+            var element = parseElement(xmlObjectList[i]);
+            if (element != null) {
+		        _this.container.parentNode.appendChild(element.container);
+            }
+        }
 	}
 
 }
 
-function Popup()
+function Popup() {
     this.name = name;
-    this.elementList = [];
 
     this.contentContainer = document.createElement("div");
 
     this.close = document.createElement("div");
     this.close.innerHTML = "Close";
+
+    var _this = this;
+
     this.close.onclick = function() {
-        this.container.parent.removeChild(this.container);
+        _this.container.parentNode.removeChild(_this.container);
     }
 
     this.container = document.createElement("div");
@@ -337,19 +324,8 @@ function Popup()
     this.container.appendChild(this.close);
 
     this.addElement = function(element) {
-        if (element!= null) {
-            this.container.appendChild(element.container);
-            this.elementList.push(element);
+        if (element != null) {
+            this.contentContainer.appendChild(element.container);
         }
     };
-
-    this.removeElement = function(i) {
-        this.container.removeChild(elementList[i].container);
-        this.elementList.splice(i, 1);
-    };
-}
-
-function Button(text, xmlObject) {
-    this.container = document.createElement("div");
-    this.container.className = "elementAnswer";
 }

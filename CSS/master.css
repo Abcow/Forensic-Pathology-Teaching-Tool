@@ -93,7 +93,7 @@ body > div {
     font-weight: 600;
     font-size: 20px;
     margin: 0px;
-    text-align: justify;
+    text-align: center;
 }
 
 .elementImage {
@@ -239,39 +239,53 @@ body > div {
     margin: 8px 0px;
 }
 
+.elementButton {
+    text-align: center;
+}
 
-.elementAnswer > div {
-    width: 424px;
+
+.elementButton > div {
     padding: 12px;
-    margin-bottom: 2px;
     text-align: center;
     background-color: rgba(0, 0, 0, 0.3);
     cursor:pointer;
 
-    margin-left: 0px;
+    width: 500px;
     opacity: 0.6;
 
-    transition: opacity 75ms linear, margin-left 75ms linear;
-    -moz-transition: opacity 75ms linear, margin-left 75ms linear;
-    -webkit-transition: opacity 75ms linear, margin-left 75ms linear;
+    transition: opacity 75ms linear, width 75ms linear;
+    -moz-transition: opacity 75ms linear, width 75ms linear;
+    -webkit-transition: opacity 75ms linear, width 75ms linear;
     -o-transition: opacity 75ms linear, margin-left 75ms linear;
 }
 
-.elementAnswer > div:hover {
+.elementButton > div:hover {
     opacity: 1;
-    margin-left: 1px;
+    width: 502px;
 
-    transition: opacity 150ms linear, margin-left 150ms linear;
-    -moz-transition: opacity 150ms linear, margin-left 150ms linear;
-    -webkit-transition: opacity 150ms linear, margin-left 150ms linear;
-    -o-transition: opacity 150ms linear, margin-left 150ms linear;
+    transition: opacity 150ms linear, width 150ms linear;
+    -moz-transition: opacity 150ms linear, width 150ms linear;
+    -webkit-transition: opacity 150ms linear, width 150ms linear;
+    -o-transition: opacity 150ms linear, width 150ms linear;
 }
 
 .elementPopup {
     position: fixed;
-    width: 600px;
+    width: 464px;
     background-color: #222;
-    padding-bottom: 64px;
+    padding: 24px;
+    top: 33%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+}
+
+.elementPopup * {
+    text-align: center;
 }
 
 .elementPopup > div:first-child {
@@ -280,7 +294,30 @@ body > div {
 
 .elementPopup > div:last-child {
     position: absolute;
-    bottom: 0px;
-    width: 100%;
-    height: 64px;
+    bottom: -50px;
+    left: 0px;
+    height: 48px;
+    line-height: 48px;
+    font-weight: 600;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.3);
+    cursor:pointer;
+
+    width: 512px;
+    opacity: 0.6;
+
+    transition: opacity 75ms linear, width 75ms linear;
+    -moz-transition: opacity 75ms linear, width 75ms linear;
+    -webkit-transition: opacity 75ms linear, width 75ms linear;
+    -o-transition: opacity 75ms linear, margin-left 75ms linear;
+}
+
+.elementPopup > div:last-child:hover {
+    opacity: 1;
+    width: 514px;
+
+    transition: opacity 150ms linear, width 150ms linear;
+    -moz-transition: opacity 150ms linear, width 150ms linear;
+    -webkit-transition: opacity 150ms linear, width 150ms linear;
+    -o-transition: opacity 150ms linear, width 150ms linear;
 }
