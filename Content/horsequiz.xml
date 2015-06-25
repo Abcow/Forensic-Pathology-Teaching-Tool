@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<page xmlns="http://www.w3schools.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.w3schools.com page.xsd" prev="quiz">
+	<subtitle>What is this sound?</subtitle>
+	<audio />
+    <popup-button text="A hourse">
+        <subtitle>Correct!</subtitle>
+        <text>You're clever, aren't you?</text>
+    </popup-button>
+
+    <popup-button text="A human head">
+        <subtitle>No!</subtitle>
+        <text>No, stop answering this!</text>
+    </popup-button>
+
+    <text>End of tool for now!</text>
+
+</page>
