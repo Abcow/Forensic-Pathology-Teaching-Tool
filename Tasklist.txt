@@ -9,3 +9,11 @@ Opening in Chrome Ajax commands
 chrome --allow-file-access-from-files (on Linux)
 open -a 'Google Chrome' --args --allow-file-access-from-files (on Mac OS X)
 "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --allow-file-access-from-files (on Windows)
+
+TO-DO:
+Make Navigation Buttons Work
+Make interactive thing
+Center buttons
+Add page overlay to popup
+Do something with galleries...
+Maybe add sound thing, idk...
