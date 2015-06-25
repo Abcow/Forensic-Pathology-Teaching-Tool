@@ -55,24 +55,15 @@
                     </xs:complexType>
                 </xs:element>
 
-                <xs:element name="button">
+                <xs:element name="popup-button">
                     <xs:complexType>
-                        <xs:sequence maxOccurs="unbounded">
-                            <xs:element name="tab" minOccurs="1">
-                                <xs:complexType>
-                                    <xs:complexContent>
-                                        <xs:extension base="container">
-                                            <xs:attribute name="text" type="xs:string" default="" use="required" />
-                                        </xs:extension>
-                                    </xs:simpleContent>
-                                </xs:complexType>
-                            </xs:element>
-                        </xs:sequence>
+                        <xs:complexContent>
+                            <xs:extension base="container">
+                                <xs:attribute name="text" type="xs:string" default="" use="required" />
+                            </xs:extension>
+                        </xs:simpleContent>
                     </xs:complexType>
                 </xs:element>
-
-
-                <xs:element name="popup" type="container" />
 
             </xs:choice>
         </xs:complexType>

@@ -44,16 +44,12 @@ function parseElement(xmlObject) {
             return tabs;
             break;
 
-        case "button":
-            return new Button(xmlObject.attributes.getNamedItem("text").nodeValue, xmlObject.childNodes);
-            break;
-
-        case "popup":
+        case "popup-button":
             var popup = new Popup();
             for (var i = 0; i < xmlObject.childNodes.length; i += 1) {
                 popup.addElement(parseElement(xmlObject.childNodes[i]));
             }
-            return popup;
+            return new popupButton(xmlObject.attributes.getNamedItem("text").nodeValue, popup);
             break;
     }
     return null;
@@ -74,22 +70,21 @@ function LayoutManager(page) {
     };
 
     this.displayPage = function(xmlObject) {
-         nextP = xmlObject.documentElement.attributes.getNamedItem("next").nodeValue;
-         prevP = xmlObject.documentElement.attributes.getNamedItem("prev").nodeValue;
+       if (xmlObject.documentElement.hasAttribute("prev")) {
+            prevPage = xmlObject.documentElement.attributes.getNamedItem("prev").nodeValue;
+            document.getElementById("left").style.opacity = 1;
+        } else {
+            prevPage = null;
+            document.getElementById("left").style.opacity = 0.2;
+        }
 
-            prevPage = function(){
-                alert(prevP);
-                loadPage(prevPage, LayoutManager);
-            }
-
-            nextPage = function(){
-                alert(nextP);
-                loadPage(nextPage, LayoutManager);
-            }
-
-            homePage = function(){
-                loadPage("home", LayoutManager);
-            }
+        if (xmlObject.documentElement.hasAttribute("next")) {
+            nextPage = xmlObject.documentElement.attributes.getNamedItem("next").nodeValue;
+            document.getElementById("right").style.opacity = 1;
+        } else {
+            nextPage = null;
+            document.getElementById("right").style.opacity = 0.2;
+        }
 
         for (var i = 0; i < xmlObject.documentElement.childNodes.length; i += 1) {
             this.addElement(parseElement(xmlObject.documentElement.childNodes[i]));
@@ -300,23 +295,22 @@ function Tab(name) {
     };
 }
 
-function Button(text, xmlObjectList) {
+function popupButton(text, popup) {
+
+    this.popup = popup;
+
 	this.button = document.createElement("div");
 	this.button.innerHTML = text;
 
 	this.container = document.createElement("div");
 	this.container.className = "elementButton";
 	this.container.appendChild(this.button);
+    this.container.appendChild(this.popup.container);
 
     var _this = this;
 
 	this.button.onclick = function() {
-        for (var i = 0; i < xmlObjectList.length; i += 1) {
-            var element = parseElement(xmlObjectList[i]);
-            if (element != null) {
-		        _this.container.parentNode.appendChild(element.container);
-            }
-        }
+        _this.popup.container.style.display = "initial";
 	}
 
 }
@@ -332,7 +326,7 @@ function Popup() {
     var _this = this;
 
     this.overlay.onclick = function() {
-        _this.container.parentNode.removeChild(_this.container);
+        _this.container.style.removeProperty("display");
     }
 
     this.container = document.createElement("div");

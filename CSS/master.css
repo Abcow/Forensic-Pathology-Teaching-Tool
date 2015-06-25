@@ -241,7 +241,7 @@ body > div {
 }
 
 
-.elementButton > div {
+.elementButton > div:first-child {
     margin-left: auto;
     margin-right: auto;
     padding: 12px;
@@ -258,7 +258,7 @@ body > div {
     -o-transition: opacity 75ms linear, margin-left 75ms linear;
 }
 
-.elementButton > div:hover {
+.elementButton > div:first-child:hover {
     opacity: 1;
     width: 502px;
 
@@ -269,6 +269,7 @@ body > div {
 }
 
 .elementPopup {
+    display: none;
 }
 
 .elementPopup * {
@@ -285,11 +286,11 @@ body > div {
     line-height: 48px;
     font-weight: 600;
     text-align: center;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(20, 20, 20, 0.8);
     cursor:pointer;
-    z-index: 0
+    z-index: 1;
 
-    opacity: 0.6;
+    opacity: 0.8;
 
     transition: opacity 75ms linear;
     -moz-transition: opacity 75ms linear;
@@ -319,6 +320,5 @@ body > div {
     -moz-transform: translate(-50%, -50%);
     -webkit-transform: translate(-50%, -50%);
     -o-transform: translate(-50%, -50%);
-    position: relative;
     z-index: 1;
 }

@@ -7,30 +7,22 @@
     previous="example">
 
     <title>What is the capital of Germany?</title>
-    <button text="Munich">
-        <popup>
-            <subtitle>Incorrect!</subtitle>
-            <text>Munich is the third largest city in Germany.</text>
-        </popup>
-    </button>
+    <popup-button text="Munich">
+        <subtitle>Incorrect!</subtitle>
+        <text>Munich is the third largest city in Germany.</text>
+    </popup-button>
 
-    <button text="Berlin">
-        <popup>
-            <title>Correct!</title>
-        </popup>
-    </button>
+    <popup-button text="Berlin">
+        <title>Correct!</title>
+    </popup-button>
 
-    <button text="The letter G">
-        <popup>
-            <text>Correct...I ...guess... Not really what we were looking for.</text>
-        </popup>
-    </button>
+    <popup-button text="The letter G">
+        <text>Correct...I ...guess... Not really what we were looking for.</text>
+    </popup-button>
 
-    <button text="Hamburg">
-        <popup>
-            <subtitle>Incorrect!</subtitle>
-            <text>Hamburg is the second largest city in Germany.</text>
-        </popup>
-    </button>
+    <popup-button text="Hamburg">
+        <subtitle>Incorrect!</subtitle>
+        <text>Hamburg is the second largest city in Germany.</text>
+    </popup-button>
 
 </page>

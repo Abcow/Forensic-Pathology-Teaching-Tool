@@ -20,7 +20,7 @@
         
         <script type="text/javascript">
             window.onload = function() {
-                var layoutManager = new LayoutManager(document.body);
+                layoutManager = new LayoutManager(document.body);
                 loadPage("test", layoutManager)
             };
         </script>
@@ -42,15 +42,15 @@
                 </li>
 
                 <li id="right">
-                    <img src="images/button-right.png" onclick= "nextPage();">
+                    <img src="images/button-right.png" onclick="loadPage(nextPage, layoutManager);">
                 </li>
 
                 <li id="left">
-                    <img src="images/button-left.png" onclick= "prevPage();" >
+                    <img src="images/button-left.png" onclick="loadPage(prevPage, layoutManager);" >
                 </li>
 
                 <li id="home">
-                    <img src="images/button-home.png">
+                    <img src="images/button-home.png" onclick="loadPage('home', layoutManager);">
                 </li>
 
             </ul>
