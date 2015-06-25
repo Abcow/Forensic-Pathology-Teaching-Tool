@@ -3,17 +3,21 @@ function parseElement(xmlObject) {
         case "title":
             return new Title(xmlObject.childNodes[0].nodeValue);
             break;
+
         case "subtitle":
             return new Subtitle(xmlObject.childNodes[0].nodeValue);
             break;
+
         case "text":
             return new Text(xmlObject.childNodes[0].nodeValue);
             break;
+
         case "image":
             return new Image("images/" + xmlObject.attributes.getNamedItem("filename").nodeValue,
-                             xmlObject.hasAttribute("width") ? xmlObject.attributes.getNamedItem("width").nodeValue + "px" : "100%",
-                             xmlObject.hasAttribute("height") ? xmlObject.attributes.getNamedItem("height").nodeValue + "px" : "auto");
+                             xmlObject.hasAttribute("width") ? xmlObject.attributes.getNamedItem("width").nodeValue : 256,
+                             xmlObject.hasAttribute("height") ? xmlObject.attributes.getNamedItem("height").nodeValue : 256);
             break;
+
         case "gallery":
             var srcList = [];
             for (var i = 0; i < xmlObject.childNodes.length; i += 1) {
@@ -22,28 +26,31 @@ function parseElement(xmlObject) {
                 }
             }
             return new Gallery(srcList,
-                               xmlObject.hasAttribute("width") ? xmlObject.attributes.getNamedItem("width").nodeValue + "px" : "100%",
-                               xmlObject.hasAttribute("height") ? xmlObject.attributes.getNamedItem("height").nodeValue + "px" : "auto");
+                               xmlObject.hasAttribute("width") ? xmlObject.attributes.getNamedItem("width").nodeValue : 256,
+                               xmlObject.hasAttribute("height") ? xmlObject.attributes.getNamedItem("height").nodeValue : 256);
             break;
+
         case "tabs":
             var tabs = new Tabs();
-            console.log("0");
-            console.log(xmlObject);
             for (var i = 0; i < xmlObject.childNodes.length; i += 1) {
-                console.log("----" + i);
-                console.log(xmlObject.childNodes[i]);
                 if (xmlObject.childNodes[i].nodeName == "tab") {
                     var tab = new Tab(xmlObject.childNodes[i].attributes.getNamedItem("name").nodeValue);
-
                     for (var j = 0; j < xmlObject.childNodes[i].childNodes.length; j += 1) {
-                        console.log("--------" + j);
-                        console.log(xmlObject.childNodes[i].childNodes[j])
                         tab.addElement(parseElement(xmlObject.childNodes[i].childNodes[j]));
                     }
                     tabs.addTab(tab);
                 }
             }
             return tabs;
+            break;
+
+        case "popup":
+            var popup = new Popup();
+            for (var i = 0; i < xmlObject.childNodes.length; i += 1) {
+                    popup.addElement(parseElement(xmlObject.childNodes[i]));
+                }
+            }
+            return popup;
             break;
     }
     return null;
@@ -108,12 +115,12 @@ function Text(text) {
 function Image(src, width, height) {
     this.img = document.createElement("img");
     this.img.src = src;
-    this.img.style.maxWidth = width;
-    this.img.style.maxHeight = height;
+    this.img.style.maxWidth = width + "px";
+    this.img.style.maxHeight = height + "px";
 
     this.container = document.createElement("div");
     this.container.className = "elementImage";
-    this.container.style.height = height;
+    this.container.style.height = height + "px";
     this.container.appendChild(this.img);
 }
 
@@ -122,12 +129,12 @@ function Gallery(srcList, width, height) {
     for (var i = 0; i < srcList.length; i += 1) {
         var img = document.createElement("img");
         img.src = srcList[i];
-        img.style.maxWidth = width;
-        img.style.maxHeight = height;
+        img.style.maxWidth = width + "px";
+        img.style.maxHeight = height + "px";
         img.style.left = "0px";
         if (i != 0) {
             img.style.opacity = 0;
-            img.style.left = width;
+            img.style.left = width + "px";
         }
         this.imgList.push(img);
     }
@@ -194,8 +201,8 @@ function Gallery(srcList, width, height) {
     };
 
     this.imageContainer = document.createElement("div");
-    this.imageContainer.style.width = width;
-    this.imageContainer.style.height = height;
+    this.imageContainer.style.width = width + "px";
+    this.imageContainer.style.height = height + "px";
 
     this.navContainer = document.createElement("div");
 
@@ -249,6 +256,8 @@ function Tabs() {
 
         if (i == 0) {
             tab.container.style.display = "initial";
+            this.navContainer.childNodes[i].style.color = "#333";
+            this.navContainer.childNodes[i].style.backgroundColor = "rgba(255, 255, 255, 0.9)";
         }
     };
 
@@ -308,4 +317,39 @@ function Answer(names, response){
 		layoutManager.addElement(parseElement(response));
 	}
 
+}
+
+function Popup()
+    this.name = name;
+    this.elementList = [];
+
+    this.contentContainer = document.createElement("div");
+
+    this.close = document.createElement("div");
+    this.close.innerHTML = "Close";
+    this.close.onclick = function() {
+        this.container.parent.removeChild(this.container);
+    }
+
+    this.container = document.createElement("div");
+    this.container.className = "elementPopup";
+    this.container.appendChild(this.contentContainer);
+    this.container.appendChild(this.close);
+
+    this.addElement = function(element) {
+        if (element!= null) {
+            this.container.appendChild(element.container);
+            this.elementList.push(element);
+        }
+    };
+
+    this.removeElement = function(i) {
+        this.container.removeChild(elementList[i].container);
+        this.elementList.splice(i, 1);
+    };
+}
+
+function Button(text, xmlObject) {
+    this.container = document.createElement("div");
+    this.container.className = "elementAnswer";
 }
