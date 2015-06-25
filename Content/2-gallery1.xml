@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<page xmlns="http://www.w3schools.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.w3schools.com page.xsd" prev="1-video" next="3-tabbedGallery">
+	<title>Gallery</title>
+	<text>Look, an image gallery!</text>
+	<subtitle>Bunnies</subtitle>
+	<gallery width="700" height="600">
+		<image filename="bun.jpg" />
+		<image filename="butt.jpg" />
+		<image filename="5.png" />
+	</gallery>
+</page>
