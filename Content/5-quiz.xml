@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<page xmlns="http://www.w3schools.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.w3schools.com page.xsd" next="quizExample" prev="home">
-	<title>Quiz</title>
+<page xmlns="http://www.w3schools.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.w3schools.com page.xsd" prev="4-quizExample" next="6-horseQuiz">
+	<title>You can have lots of elements on a page!</title>
 	<text>Scroll down to see the quiz, we've provided the gallery for some help too</text>
 	<tabs>
 		<tab name="Bunnies">
