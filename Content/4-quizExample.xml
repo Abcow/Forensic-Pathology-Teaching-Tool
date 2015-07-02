@@ -3,6 +3,7 @@
 <page xmlns="http://www.w3schools.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.w3schools.com page.xsd" prev="3-tabbedGallery" next="5-quiz" >
 
     <title>What is the capital of Germany?</title>
+
     <popup-button text="Munich">
         <subtitle>Incorrect!</subtitle>
         <text>Munich is the third largest city in Germany.</text>
@@ -17,8 +18,49 @@
     </popup-button>
 
     <popup-button text="Hamburg">
+
         <subtitle>Incorrect!</subtitle>
+
         <text>Hamburg is the second largest city in Germany.</text>
+
     </popup-button>
+
+    <subtitle>Another way to organise the buttons</subtitle>
+
+    <columns>
+
+        <column>
+            <popup-button text="Munich">
+
+                <subtitle>Incorrect!</subtitle>
+
+                <text>Munich is the third largest city in Germany.</text>
+
+            </popup-button>
+        </column> 
+
+        <column>
+            <popup-button text="Berlin">
+                <title>Correct!</title>
+            </popup-button>
+        </column>
+
+        <column>
+            <popup-button text="The letter G">
+                <text>Correct...I ...guess... Not really what we were looking for.</text>
+            </popup-button>
+        </column>
+
+        <column>
+            <popup-button text="Hamburg">
+
+                <subtitle>Incorrect!</subtitle>
+
+                <text>Hamburg is the second largest city in Germany.</text>
+                
+            </popup-button>
+        </column>
+
+    </columns>
 
 </page>

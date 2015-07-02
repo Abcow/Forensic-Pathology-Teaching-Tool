@@ -98,6 +98,14 @@
                 </xs:complexType>
             </xs:element>
 
+            <xs:element name="columns">
+                <xs:complexType>
+                    <xs:sequence maxOccurs="unbounded">
+                        <xs:element name="column" minOccurs="1" type="container" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
             </xs:choice>
         </xs:complexType>
     </xs:element>

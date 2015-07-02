@@ -69,6 +69,20 @@ function parseElement(xmlObject) {
         case "audio":
             return new Audio("audio/" + xmlObject.attributes.getNamedItem("filename").nodeValue);
             break;
+
+        case "columns":
+            var columns = new Columns();
+            for (var i = 0; i < xmlObject.childNodes.length; i += 1) {
+                if (xmlObject.childNodes[i].nodeName == "column") {
+                    var column = new Column();
+                    for (var j = 0; j < xmlObject.childNodes[i].childNodes.length; j += 1) {
+                        column.addElement(parseElement(xmlObject.childNodes[i].childNodes[j]));
+                    }
+                    columns.addColumn(column);
+                }
+            }
+            return columns;
+            break;
     }
     return null;
 }
@@ -239,6 +253,7 @@ function Gallery(srcList, width, height) {
     for (var i = 0; i < this.imgList.length; i += 1) {
         this.imageContainer.appendChild(this.imgList[i]);
         var button = document.createElement("div");
+        button.className = "elementButton";
         button.innerHTML = i;
         if (i == 0) {
             button.style.color = "#333";
@@ -418,4 +433,28 @@ function NavigationButton(text, destination) {
         loadPage(destination)
     }
 
+}
+
+function Columns() {
+
+    this.container = document.createElement("div");
+    this.container.className = "elementColumns";
+
+    var _this = this;
+
+    this.addColumn = function(column) {
+        _this.container.appendChild(column.container);
+
+    };
+}
+
+function Column() {
+    this.container = document.createElement("div");
+    this.container.className = "elementColumn";
+
+    this.addElement = function(element) {
+        if (element != null) {
+            this.container.appendChild(element.container);
+        }
+    };
 }
