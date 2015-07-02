@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<page xmlns="http://www.w3schools.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.w3schools.com page.xsd" prev="Q2" next="Q4">
+	<title>These are links to different Questions</title>
+	<!-- Buttons to different questions & galleries -->
+	<navigation-button destination="Q1">Question 1</navigation-button>
+	<navigation-button destination="Q2">Question 2</navigation-button>
+	<navigation-button destination="Q3">Question 3</navigation-button>
+	<navigation-button destination="Q4">Question 4</navigation-button>
+	
+	<!-- The Galleries -->
+	<gallery width="700" height="600">
+		<image filename="bunny.jpg" />
+		<image filename="bunny-2.jpg" />
+		<image filename="bunny-3.jpg" />
+		<image filename="bunny-4.jpg" />
+	</gallery>
+		
+	<!-- The Question -->	
+	<title>Question 3</title>
+    <popup-button text="iUOHclskj">
+        <subtitle>Incorrect!</subtitle>
+    </popup-button>
+
+    <popup-button text="oyd98qoguijdna77">
+        <subtitle>Incorrect</subtitle>
+    </popup-button>
+
+    <popup-button text="8oughviualhjkx asud">
+        <subtitle>Incorrect</subtitle>
+    </popup-button>
+
+    <popup-button text="aaaaaaaaaaaaa">
+        <subtitle>Correct!</subtitle>
+    </popup-button>
+
+</page>
