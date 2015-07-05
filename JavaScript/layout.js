@@ -70,6 +70,11 @@ function parseElement(xmlObject) {
             return new Audio("audio/" + xmlObject.attributes.getNamedItem("filename").nodeValue);
             break;
 
+        case "subaudio":
+        	alert("foundone!");
+            return new subtitledAudio("audio/" + xmlObject.attributes.getNamedItem("filename").nodeValue);
+            break;
+
         case "columns":
             var columns = new Columns();
             for (var i = 0; i < xmlObject.childNodes.length; i += 1) {
@@ -457,4 +462,27 @@ function Column() {
             this.container.appendChild(element.container);
         }
     };
+}
+
+function subtitledAudio(src){
+    this.audio = document.createElement("audio");
+    this.audio.src = src;
+    this.audio.controls = true;
+    this.type = "";
+
+    this.container = document.createElement("div");
+    this.container.className = "elementAudio";
+    this.container.appendChild(this.audio);
+
+    this.container = document.createElement("div");
+    this.container.className = "titleContainer";
+
+    this.audio.onplay = function(){ document.getElementsByClassName("titleContainer")[0].innerHTML = "play"; };
+    this.audio.onpause = function(){ document.getElementsByClassName("titleContainer")[0].innerHTML = "paused"; };
+    this.audio.onseeked = function(){ document.getElementsByClassName("titleContainer")[0].innerHTML = "seeked"; };
+    this.audio.onseeking = function(){ document.getElementsByClassName("titleContainer")[0].innerHTML = "seeking"; };
+    this.audio.ontimeupdate = function(){ document.getElementsByClassName("titleContainer")[0].innerHTML = "TimeUpdate"; };
+    
+    
+
 }
