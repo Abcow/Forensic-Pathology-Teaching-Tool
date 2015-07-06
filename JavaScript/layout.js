@@ -83,6 +83,29 @@ function parseElement(xmlObject) {
             }
             return columns;
             break;
+
+        case "csi-image":
+            var csiImage = new CsiImage("images/" + xmlObject.attributes.getNamedItem("filename").nodeValue,
+                                        xmlObject.hasAttribute("width") ? xmlObject.attributes.getNamedItem("width").nodeValue : 256,
+                                        xmlObject.hasAttribute("height") ? xmlObject.attributes.getNamedItem("height").nodeValue : 256);
+            for (var i = 0; i < xmlObject.childNodes.length; i += 1) {
+                if (xmlObject.childNodes[i].nodeName == "click-area") {
+                    var popup = new Popup();
+                    for (var j = 0; j < xmlObject.childNodes.length; j += 1) {
+                        popup.addElement(parseElement(xmlObject.childNodes[j]));
+                    }
+                    csiImage.addClickArea(new ClickArea(
+                        xmlObject.childNodes[i].attributes.getNamedItem("x1").nodeValue,
+                        xmlObject.childNodes[i].attributes.getNamedItem("y1").nodeValue,
+                        xmlObject.childNodes[i].attributes.getNamedItem("x2").nodeValue,
+                        xmlObject.childNodes[i].attributes.getNamedItem("y2").nodeValue,
+                        popup)
+                    );
+                }
+                
+            }
+            return csiImage;
+            break;
     }
     return null;
 }
@@ -457,4 +480,124 @@ function Column() {
             this.container.appendChild(element.container);
         }
     };
+}
+
+function CsiImage(src, width, height) {
+    this.clickAreaList = [];
+    
+    this.image = document.createElement("img");
+    this.image.src = src;
+
+    this.container = document.createElement("div");
+    this.container.className = "elementCsiImage";
+
+    this.imageContainer = document.createElement("div");
+    this.imageContainer.className = "elementImage";
+    this.imageContainer.style.width = width + "px";
+    this.imageContainer.style.height = height + "px";
+    this.imageContainer.appendChild(this.image);
+
+    this.container.appendChild(this.imageContainer);
+
+    this.width = width;
+    this.height = height;
+    this.xRatio = 1;
+    this.yRatio = 1;
+
+    var _this = this;
+
+    this.image.onload = function() {
+        _this.xRatio = (this.width / this.height) / (_this.width / _this.height)
+        if (_this.xRatio > 1) {
+            _this.yRatio = 1 / _this.xRatio;
+            _this.xRatio = 1;
+        } else {
+            _this.yRatio = 1;
+        }
+    }
+
+    this.clicked = false;
+    this.x = 50;
+    this.y = 50;
+    this.z = 0.0;
+    this.mouseXPrev = 0;
+    this.mouseYPrev = 0;
+
+    this.addClickArea = function(clickArea) {
+        this.clickAreaList.push(clickArea);
+
+        this.imageContainer.appendChild(clickArea.container);
+    };
+
+    this.zoom = function(dz) {
+        console.log(dz);
+        this.z = Math.min(Math.max(this.z + dz, 0), 2);
+        var scale = Math.pow(2, this.z) * 100;
+        this.image.style.minWidth = scale * this.xRatio + "%";
+        this.image.style.minHeight = scale * this.yRatio + "%";
+    };
+
+    this.scroll = function(dx, dy) {
+        var scale = Math.pow(2, this.z);
+        var newX = Math.min(Math.max(this.x + (dx / this.xRatio) / scale, 0), 100);
+        var newY = Math.min(Math.max(this.y + (dy / this.yRatio) / scale, 0), 100);
+
+        this.image.style.transform = "translate(" + (newX - 100) + "%, " + (newY - 100) + "%)";
+        this.image.style.MsTransform = "translate(" + (newX - 100) + "%, " + (newY - 100) + "%)";
+        this.image.style.MozTransform = "translate(" + (newX - 100) + "%, " + (newY - 100) + "%)";
+        this.image.style.WebkitTransform = "translate(" + (newX - 100) + "%, " + (newY - 100) + "%)";
+        this.image.style.OTransform = "translate(" + (newX - 100) + "%, " + (newY - 100) + "%)";
+        
+        this.x = newX;
+        this.y = newY;
+    };
+
+    this.image.onmousedown = function() {
+        console.log("Mouse Clicked");
+        _this.clicked = true;
+    }
+
+    this.image.onmouseleave = function() {
+        _this.clicked = false;
+    }
+
+    this.image.onmouseup = function() {
+        _this.clicked = false;
+    }
+
+    this.image.onmousemove = function(e) {
+        if (_this.clicked) {
+            _this.scroll(100 * (e.clientX - _this.mouseXPrev) / _this.width, 100 * (e.clientY - _this.mouseYPrev) / _this.height);
+        }
+        _this.mouseXPrev = e.clientX;
+        _this.mouseYPrev = e.clientY;
+    }
+
+    this.image.onwheel = function(e) {
+        _this.zoom(-e.deltaY / 20);
+    }
+
+    this.image.ondragstart = function() {
+        return false;
+    }
+}
+
+function ClickArea(x1, y1, x2, y2, popup) {
+    this.popup = popup;
+
+    this.container = document.createElement("div");
+    this.container.className = "elementClickArea";
+
+    this.container.style.left = x1;
+    this.container.style.width = parseFloat(x2) - parseFloat(x1) + "%";
+    this.container.style.top = y1;
+    this.container.style.height = parseFloat(y2) - parseFloat(y1) + "%";
+
+    this.container.appendChild(this.popup.container);
+
+    var _this = this;
+
+    this.container.onclick = function() {
+        _this.popup.container.style.display = "initial";
+    }
 }
