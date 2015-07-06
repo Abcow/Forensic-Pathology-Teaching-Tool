@@ -71,7 +71,6 @@ function parseElement(xmlObject) {
             break;
 
         case "subaudio":
-        	alert("foundone!");
             return new subtitledAudio("audio/" + xmlObject.attributes.getNamedItem("filename").nodeValue);
             break;
 
@@ -470,19 +469,143 @@ function subtitledAudio(src){
     this.audio.controls = true;
     this.type = "";
 
+    var _this = this.audio;
+
     this.container = document.createElement("div");
     this.container.className = "elementAudio";
+
+    this.titleContainer = document.createElement("div");
+    this.titleContainer.className = "titleContainer";
+
     this.container.appendChild(this.audio);
+    this.container.appendChild(this.titleContainer);
 
-    this.container = document.createElement("div");
-    this.container.className = "titleContainer";
+    this.audio.onplay = function(){
+        time = _this.currentTime;
+        document.getElementsByClassName("titleContainer")[0].innerHTML = document.getElementsByClassName("titleContainer")[0].innerHTML = getSubs(time);
+    };
 
-    this.audio.onplay = function(){ document.getElementsByClassName("titleContainer")[0].innerHTML = "play"; };
-    this.audio.onpause = function(){ document.getElementsByClassName("titleContainer")[0].innerHTML = "paused"; };
-    this.audio.onseeked = function(){ document.getElementsByClassName("titleContainer")[0].innerHTML = "seeked"; };
-    this.audio.onseeking = function(){ document.getElementsByClassName("titleContainer")[0].innerHTML = "seeking"; };
-    this.audio.ontimeupdate = function(){ document.getElementsByClassName("titleContainer")[0].innerHTML = "TimeUpdate"; };
+    this.audio.onpause = function(){
+        time = _this.currentTime;
+        document.getElementsByClassName("titleContainer")[0].innerHTML = document.getElementsByClassName("titleContainer")[0].innerHTML = getSubs(time);
+    };
     
+    this.audio.onseeked = function(){
+        time = _this.currentTime;
+        document.getElementsByClassName("titleContainer")[0].innerHTML = getSubs(time);
+    };
     
+    this.audio.onseeking = function(){
+        time = _this.currentTime;
+        document.getElementsByClassName("titleContainer")[0].innerHTML = getSubs(time);
+    };
+    
+    this.audio.ontimeupdate = function(){
+        time = _this.currentTime;
+        document.getElementsByClassName("titleContainer")[0].innerHTML = getSubs(time);
+    };
+    
+function getSubs(time){
+        
+        //thetime = " The time is: " + time;
+        subs = "";
+
+        if( 11 <= time && time < 14){
+            subs = "Good Morning, this is DI Pullan,";
+        }else if( 14 <= time && time < 17 ){
+            subs = "may I speak to Dr Yap of the forensic pathology department.";
+        }else if( 17 <= time && time < 19 ){
+            subs = "Currently speaking.";
+        }else if( 19 <= time && time < 20 ){
+            subs = "Ah, good. I was just ringing you to inform you of";
+        }else if( 20 <= time && time < 23 ){
+            subs = "a suspicious death in the Roath area of Cardiff, last night.";
+        }else if( 23 <= time && time < 25 ){
+            subs = "O.K. Go on.";
+        }else if( 25 <= time && time < 27 ){
+            subs = "The deceased was identified as Marvin Settler.";
+        }else if( 27 <= time && time < 29 ){
+            subs = "He is a thirty four year old male,";
+        }else if( 29 <= time && time < 32 ){
+            subs = "who was found this morning at 7:30 AM,";
+        }else if( 32 <= time && time < 34 ){
+            subs = "slumped against an alley wall near to his house.";
+        }else if( 34 <= time && time < 37 ){
+            subs = "Although was cold to the touch and pulseless,";
+        }else if( 37 <= time && time < 38 ){
+            subs = "the woman who found him rang an ambulance and began CPR.";
+        }else if( 38 <= time && time < 42 ){
+            subs = "She has been trained in basic life support.";
+        }else if( 42 <= time && time < 45 ){
+            subs = "The ambulance crew pronounced the man dead at the scene,";
+        }else if( 45 <= time && time < 46 ){
+            subs = "and due to the circumstances of his death we thought";
+        }else if( 46 <= time && time < 48 ){
+            subs = "it best to involve you as quickly";
+        }else if( 48 <= time && time < 49 ){
+            subs = "as we could in this investigation.";
+        }else if( 50 <= time && time < 51 ){
+            subs = "I see.";
+        }else if( 51 <= time && time < 53 ){
+            subs = "When was the individual last seen?";
+        }else if( 54 <= time && time < 57 ){
+            subs = "Around 2:30, we think, that same morning,";
+        }else if( 57 <= time && time < 62 ){
+            subs = "he was leaving Live Lounge at the time.";
+        }else if( 62 <= time && time < 63 ){
+            subs = "And we believe he began walking home,";
+        }else if( 63 <= time && time < 65 ){
+            subs = "but did not make it.";
+        }else if( 65 <= time && time < 68 ){
+            subs = "Witness bystanders report of fighting between two individuals,";
+        }else if( 68 <= time && time < 70 ){
+            subs = "one of whom fits his description.";
+        }else if( 70 <= time && time < 73 ){
+            subs = "and he does have some injuries indicative of a fight.";
+        }else if( 73 <= time && time < 76 ){
+            subs = "And what do we know of Mr Settler? ";
+        }else if( 76 <= time && time < 77 ){
+            subs = "We know he has a large social network,";
+        }else if( 77 <= time && time < 78 ){
+            subs = "but only one remaining living relative,";
+        }else if( 80 <= time && time < 84 ){
+            subs = "his Mother, whom we have informed of this tragic death.";
+        }else if( 84 <= time && time < 86 ){
+            subs = "He has no criminal record.";
+        }else if( 86 <= time && time < 88 ){
+            subs = "And is the manager of a local cake factory,";
+        }else if( 88 <= time && time < 91 ){
+            subs = "and we are in the process of taking statements from his co-workers.";
+        }else if( 91 <= time && time < 94 ){
+            subs = "In relation to the evening, we know he was drunk";
+        }else if( 94 <= time && time < 96 ){
+            subs = "but his friends believe he had not taken any drugs.";
+        }else if( 96 <= time && time < 100 ){
+            subs = "Do we know if Mr Settler has any medical history?";
+        }else if( 100 <= time && time < 103 ){
+            subs = "He had asthma when young, but that was controlled.";
+        }else if( 103 <= time && time < 106 ){
+            subs = "and he also broke his leg when he was sixteen.";
+        }else if( 106 <= time && time < 107 ){
+            subs = "O.K Thank you.";
+        }else if( 107 <= time && time < 109 ){
+            subs = "Is the body still at the scene of death?";
+        }else if( 109 <= time && time < 111 ){
+            subs = "It is yes.";
+        }else if( 111 <= time && time < 115 ){
+            subs = "Where and when would you like to meet then?";
+        }else if( 115 <= time && time < 119 ){
+            subs = "Would 1:00PM today work for you? Queensbury Road, Roath?";
+        }else if( 119 <= time && time < 121 ){
+            subs = "Yeah, that sounds good";
+        }else if( 121 <= time && time < 123 ){
+            subs = "O.K, brilliant, thank you!";
+        }else{
+            subs = " ";
+        }
+
+        return subs;
+
+    }
 
 }

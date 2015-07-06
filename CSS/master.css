@@ -97,6 +97,7 @@ body > div {
     font-weight: 700;
     font-size: 32px;
     margin: 0px;
+    text-align: left;
     color: #eee;
 }
 
@@ -104,6 +105,7 @@ body > div {
     font-weight: 600;
     font-size: 20px;
     margin: 0px;
+    text-align: left;
     color: #ddd;
 }
 
@@ -298,8 +300,6 @@ body > div {
 }
 
 .elementAudio audio {
-    margin-left: 50%;
-
     transform: translate(-50%, 0%);
     -ms-transform: translate(-50%, 0%);
     -moz-transform: translate(-50%, 0%);
@@ -311,4 +311,10 @@ body > div {
     vertical-align: middle;
     display: inline-block;
     margin: 0px 8px;
+}
+
+.titleContainer{
+	margin: auto;
+	font-size: 32px;
+	color: #FFF;
 }
