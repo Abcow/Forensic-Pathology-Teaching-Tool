@@ -70,6 +70,11 @@ function parseElement(xmlObject) {
             return new Audio("audio/" + xmlObject.attributes.getNamedItem("filename").nodeValue);
             break;
 
+        case "subaudio":
+        	alert("foundone!");
+            return new subtitledAudio("audio/" + xmlObject.attributes.getNamedItem("filename").nodeValue);
+            break;
+
         case "columns":
             var columns = new Columns();
             for (var i = 0; i < xmlObject.childNodes.length; i += 1) {
@@ -492,7 +497,6 @@ function CsiImage(src, width, height) {
     this.container.className = "elementCsiImage";
 
     this.imageContainer = document.createElement("div");
-    this.imageContainer.className = "elementImage";
     this.imageContainer.style.width = width + "px";
     this.imageContainer.style.height = height + "px";
     this.imageContainer.appendChild(this.image);
@@ -507,50 +511,66 @@ function CsiImage(src, width, height) {
     var _this = this;
 
     this.image.onload = function() {
-        _this.xRatio = (this.width / this.height) / (_this.width / _this.height)
+        _this.xRatio = (this.width / this.height) / (_this.width / _this.height);
         if (_this.xRatio > 1) {
             _this.yRatio = 1 / _this.xRatio;
             _this.xRatio = 1;
         } else {
             _this.yRatio = 1;
         }
+        _this.zoom(0);
     }
 
     this.clicked = false;
-    this.x = 50;
-    this.y = 50;
+    this.x = 0;
+    this.y = 0;
     this.z = 0.0;
+    this.scale = 1;
     this.mouseXPrev = 0;
     this.mouseYPrev = 0;
 
     this.addClickArea = function(clickArea) {
+        clickArea.container.style.left = clickArea.x1 * this.xRatio * this.scale + this.x + 50 * (1 - this.xRatio * this.scale);
+        clickArea.container.style.top = clickArea.y1 * this.yRatio * this.scale + this.y + 50 * (1 - this.yRatio * this.scale);
+        clickArea.container.style.width = clickArea.width * this.scale + "%";
+        clickArea.container.style.height = clickArea.height * this.scale + "%";
         this.clickAreaList.push(clickArea);
-
         this.imageContainer.appendChild(clickArea.container);
     };
 
     this.zoom = function(dz) {
-        console.log(dz);
         this.z = Math.min(Math.max(this.z + dz, 0), 2);
-        var scale = Math.pow(2, this.z) * 100;
-        this.image.style.minWidth = scale * this.xRatio + "%";
-        this.image.style.minHeight = scale * this.yRatio + "%";
+        this.scale = Math.pow(2, this.z);
+        this.image.style.minWidth = this.scale * 100 * this.xRatio + "%";
+        this.image.style.minHeight = this.scale * 100 * this.yRatio + "%";
+        this.scroll(0, 0);
     };
 
     this.scroll = function(dx, dy) {
-        var scale = Math.pow(2, this.z);
-        var newX = Math.min(Math.max(this.x + (dx / this.xRatio) / scale, 0), 100);
-        var newY = Math.min(Math.max(this.y + (dy / this.yRatio) / scale, 0), 100);
 
-        this.image.style.transform = "translate(" + (newX - 100) + "%, " + (newY - 100) + "%)";
-        this.image.style.MsTransform = "translate(" + (newX - 100) + "%, " + (newY - 100) + "%)";
-        this.image.style.MozTransform = "translate(" + (newX - 100) + "%, " + (newY - 100) + "%)";
-        this.image.style.WebkitTransform = "translate(" + (newX - 100) + "%, " + (newY - 100) + "%)";
-        this.image.style.OTransform = "translate(" + (newX - 100) + "%, " + (newY - 100) + "%)";
+        var xBounds = Math.abs(50 * (1 - this.xRatio * this.scale));
+        var yBounds = Math.abs(50 * (1 - this.yRatio * this.scale));
+
+        var newX = Math.min(Math.max(this.x + dx / (this.xRatio * this.scale), -xBounds), xBounds);
+        var newY = Math.min(Math.max(this.y + dy / (this.yRatio * this.scale), -yBounds), yBounds);
+
+        this.image.style.left = (newX + 50 * (1 - this.xRatio * this.scale)) + "%";
+        this.image.style.top = (newY + 50 * (1 - this.yRatio * this.scale)) + "%";
         
         this.x = newX;
         this.y = newY;
+
+        this.updateClickAreas();
     };
+
+    this.updateClickAreas = function() {
+        for (var i = 0; i < this.clickAreaList.length; i += 1) {
+            this.clickAreaList[i].container.style.left = (this.clickAreaList[i].x * this.xRatio * this.scale + this.x + 50 * (1 - this.xRatio * this.scale)) + "%";
+            this.clickAreaList[i].container.style.top = (this.clickAreaList[i].y * this.yRatio * this.scale + this.y + 50 * (1 - this.yRatio * this.scale)) + "%";
+            this.clickAreaList[i].container.style.width = this.clickAreaList[i].width * this.scale + "%";
+            this.clickAreaList[i].container.style.height = this.clickAreaList[i].height * this.scale + "%";
+        }
+    }
 
     this.image.onmousedown = function() {
         console.log("Mouse Clicked");
@@ -575,6 +595,7 @@ function CsiImage(src, width, height) {
 
     this.image.onwheel = function(e) {
         _this.zoom(-e.deltaY / 20);
+        return false;
     }
 
     this.image.ondragstart = function() {
@@ -583,15 +604,15 @@ function CsiImage(src, width, height) {
 }
 
 function ClickArea(x1, y1, x2, y2, popup) {
+    this.x = parseFloat(x1);
+    this.y = parseFloat(y1);
+    this.width = parseFloat(x2) - parseFloat(x1);
+    this.height = parseFloat(y2) - parseFloat(y1);
+
     this.popup = popup;
 
     this.container = document.createElement("div");
     this.container.className = "elementClickArea";
-
-    this.container.style.left = x1;
-    this.container.style.width = parseFloat(x2) - parseFloat(x1) + "%";
-    this.container.style.top = y1;
-    this.container.style.height = parseFloat(y2) - parseFloat(y1) + "%";
 
     this.container.appendChild(this.popup.container);
 
@@ -600,4 +621,26 @@ function ClickArea(x1, y1, x2, y2, popup) {
     this.container.onclick = function() {
         _this.popup.container.style.display = "initial";
     }
+}
+
+function subtitledAudio(src) {
+    this.audio = document.createElement("audio");
+    this.audio.src = src;
+    this.audio.controls = true;
+    this.type = "";
+
+    this.container = document.createElement("div");
+    this.container.className = "elementAudio";
+
+    this.titleContainer = document.createElement("div");
+    this.titleContainer.className = "titleContainer";
+
+    this.container.appendChild(this.audio);
+    this.container.appendChild(this.titleContainer);
+
+    this.audio.onplay = function(){ document.getElementsByClassName("titleContainer")[0].innerHTML = "play"; };
+    this.audio.onpause = function(){ document.getElementsByClassName("titleContainer")[0].innerHTML = "paused"; };
+    this.audio.onseeked = function(){ document.getElementsByClassName("titleContainer")[0].innerHTML = "seeked"; };
+    this.audio.onseeking = function(){ document.getElementsByClassName("titleContainer")[0].innerHTML = "seeking"; };
+    this.audio.ontimeupdate = function(){ document.getElementsByClassName("titleContainer")[0].innerHTML = "TimeUpdate"; };
 }

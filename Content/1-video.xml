@@ -3,8 +3,13 @@
 <page xmlns="http://www.w3schools.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.w3schools.com page.xsd" prev="home" next="2-gallery1">
 	<subtitle>Introduction Video</subtitle>
 	<video filename="Test.mp4" width="256" height="256" />
-	<csi-image filename="dead body.jpg">
+	<csi-image filename="dead body.jpg" width="800" height="600">
 		<click-area x1="25%" y1="25%" x2="35" y2="30">
+			<title>Hi</title>
+			<subtitle>Hello</subtitle>
+			<text>You get the idea...</text>
+		</click-area>
+		<click-area x1="0%" y1="0%" x2="10" y2="10">
 			<title>Hi</title>
 			<subtitle>Hello</subtitle>
 			<text>You get the idea...</text>

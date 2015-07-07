@@ -297,18 +297,26 @@ body > div {
     margin: 0px 8px;
 }
 
-.elementCsiImage div {
+.elementCsiImage {
+    border: red solid 1px;
+}
+
+
+.elementCsiImage > div {
     overflow: hidden;
     white-space: nowrap;
 }
 
 .elementCsiImage img {
+    position: absolute;
     max-width: 100%;
     max-height: 100%;
     cursor: move;
+    opacity: 0.5;
 }
 
 .elementClickArea {
     cursor: pointer;
     position: absolute;
+    border: red solid 1px;
 }
