@@ -4,13 +4,13 @@
 	<subtitle>Introduction Video</subtitle>
 	<video filename="Test.mp4" width="256" height="256" />
 	<csi-image filename="dead body.jpg" width="800" height="600">
-		<click-area x1="25%" y1="25%" x2="35" y2="30">
-			<title>Hi</title>
+		<click-area x1="26%" y1="26%" x2="31" y2="30">
+			<title>Looooongwooord Stabby Stabby Wound</title>
 			<subtitle>Hello</subtitle>
 			<text>You get the idea...</text>
 		</click-area>
-		<click-area x1="0%" y1="0%" x2="10" y2="10">
-			<title>Hi</title>
+		<click-area x1="41%" y1="17%" x2="54" y2="26">
+			<title>Hey</title>
 			<subtitle>Hello</subtitle>
 			<text>You get the idea...</text>
 		</click-area>

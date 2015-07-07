@@ -167,7 +167,7 @@ body > div {
     margin-top: 16px;
 }
 
-.elementButton > div:first-of-type {
+.elementButton > div:first-of-type, .elementGallery > div > .elementButton {
     position: relative;
     display: inline-block;
     padding: 12px;
@@ -188,7 +188,7 @@ body > div {
     -o-transition: opacity 150ms linear, bottom 150ms linear;
 }
 
-.elementButton > div:first-of-type:hover {
+.elementButton > div:first-of-type:hover, .elementGallery > div > .elementButton:hover {
     opacity: 1;
     bottom: 1px;
 
@@ -269,7 +269,7 @@ body > div {
 
 .elementPopup > div:last-child {
     position: fixed;
-    width: 464px;
+    width: 584px;
     background-color: #333;
     padding: 24px;
     top: 33%;
@@ -283,14 +283,6 @@ body > div {
     z-index: 1;
 }
 
-.elementAudio audio {
-    transform: translate(-50%, 0%);
-    -ms-transform: translate(-50%, 0%);
-    -moz-transform: translate(-50%, 0%);
-    -webkit-transform: translate(-50%, 0%);
-    -o-transform: translate(-50%, 0%);
-}
-
 .elementColumn {
     vertical-align: middle;
     display: inline-block;
@@ -298,9 +290,9 @@ body > div {
 }
 
 
-.elementCsiImage > div {
+.elementCsiImage {
     overflow: hidden;
-    white-space: nowrap;
+    background-color: rgba(0, 0, 0, 0.3);
 }
 
 .elementCsiImage img {
@@ -314,6 +306,13 @@ body > div {
 .elementClickArea > div:first-of-type {
     cursor: pointer;
     position: absolute;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.elementClickArea > div:first-of-type:hover {
+    cursor: pointer;
+    position: absolute;
+    border: 2px solid rgba(255, 255, 255, 0.5);
 }
 
 .titleContainer {
