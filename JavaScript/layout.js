@@ -550,8 +550,8 @@ function CsiImage(src, width, height) {
         var xBounds = Math.abs(50 * (1 - this.xRatio * this.scale));
         var yBounds = Math.abs(50 * (1 - this.yRatio * this.scale));
 
-        var newX = Math.min(Math.max(this.x + dx / (this.xRatio * this.scale), -xBounds), xBounds);
-        var newY = Math.min(Math.max(this.y + dy / (this.yRatio * this.scale), -yBounds), yBounds);
+        var newX = Math.min(Math.max(this.x + dx * this.xRatio, -xBounds), xBounds);
+        var newY = Math.min(Math.max(this.y + dy * this.yRatio, -yBounds), yBounds);
 
         this.image.style.left = (newX + 50 * (1 - this.xRatio * this.scale)) + "%";
         this.image.style.top = (newY + 50 * (1 - this.yRatio * this.scale)) + "%";
