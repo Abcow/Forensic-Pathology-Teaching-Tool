@@ -329,3 +329,11 @@ body > div {
 	color: #FFF;
     background-color: rgba(0, 0, 0, 0.6);
 }
+
+.infoContainer{
+    text-align: left;
+    font-size: 32px;
+    color: #FFF;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding-left: 16px;
+}

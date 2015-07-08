@@ -639,32 +639,41 @@ function subtitledAudio(src) {
     this.titleContainer = document.createElement("div");
     this.titleContainer.className = "titleContainer";
 
+    this.infoContainer = document.createElement("div");
+    this.infoContainer.className = "infoContainer";
+
     this.container.appendChild(this.audio);
     this.container.appendChild(this.titleContainer);
+    this.container.appendChild(this.infoContainer);
 
     this.audio.onplay = function() {
         time = _this.currentTime;
         document.getElementsByClassName("titleContainer")[0].innerHTML = document.getElementsByClassName("titleContainer")[0].innerHTML = getSubs(time);
+        document.getElementsByClassName("infoContainer")[0].innerHTML = getInfo(time);
     };
 
     this.audio.onpause = function() {
         time = _this.currentTime;
         document.getElementsByClassName("titleContainer")[0].innerHTML = document.getElementsByClassName("titleContainer")[0].innerHTML = getSubs(time);
+        document.getElementsByClassName("infoContainer")[0].innerHTML = getInfo(time);
     };
     
     this.audio.onseeked = function() {
         time = _this.currentTime;
         document.getElementsByClassName("titleContainer")[0].innerHTML = getSubs(time);
+        document.getElementsByClassName("infoContainer")[0].innerHTML = getInfo(time);
     };
     
     this.audio.onseeking = function() {
         time = _this.currentTime;
         document.getElementsByClassName("titleContainer")[0].innerHTML = getSubs(time);
+        document.getElementsByClassName("infoContainer")[0].innerHTML = getInfo(time);
     };
     
     this.audio.ontimeupdate = function() {
         time = _this.currentTime;
         document.getElementsByClassName("titleContainer")[0].innerHTML = getSubs(time);
+        document.getElementsByClassName("infoContainer")[0].innerHTML = getInfo(time);
     };
     
 function getSubs(time) {
@@ -767,7 +776,34 @@ function getSubs(time) {
         }
 
         return subs;
+}
+}
 
+function getInfo(time){
+
+	info = "";
+
+	    if( 0 <= time && time < 19.5 ){
+        	info = "";
+        }else if( 19.5 <= time && time < 26 ){
+            info = "- Suspicious death in Roath, Cardiff";
+        }else if( 26 <= time && time < 34.5 ){
+            info = "- Suspicious death in Roath, Cardiff<br>- 34 Year old Male<br>- Found at 07:30";
+        }else if( 34.5 <= time && time < 60.5 ){
+            info = "- Suspicious death in Roath, Cardiff<br>- 34 Year old Male<br>- Found at 07:30<br>- Cold & Pulseless<br>- Woman Started CPR";
+        }else if( 60.5 <= time && time < 86 ){
+            info = "- Suspicious death in Roath, Cardiff<br>- 34 Year old Male<br>- Found at 07:30<br>- Cold & Pulseless<br>- Woman Started CPR<br>- Last Seen at 2:30<br>- Witness Fighting";
+        }else if( 86 <= time && time < 99.5 ){
+            info = "- Suspicious death in Roath, Cardiff<br>- 34 Year old Male<br>- Found at 07:30<br>- Cold & Pulseless<br>- Woman Started CPR<br>- Last Seen at 2:30<br>- Witness Fighting<br>- Drunk";
+        }else if( 99.5 <= time && time < 200 ){
+            info = "- Suspicious death in Roath, Cardiff<br>- 34 Year old Male<br>- Found at 07:30<br>- Cold & Pulseless<br>- Woman Started CPR<br>- Last Seen at 2:30<br>- Witness Fighting<br>- Drunk<br>- Had Asthma<br>- Broke Leg at 16";
+        }
+
+    if (info == ""){
+    	return info;
+    }else{
+    	return info;
     }
+
 
 }
